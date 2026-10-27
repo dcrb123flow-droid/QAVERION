@@ -3,161 +3,417 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#08090b">
-<title>QAVÉRION | Tienda oficial</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08090c">
+<meta name="description" content="QAVÉRION: tecnología, accesorios y estilo. Consulta y aparta por WhatsApp.">
+<title>QAVÉRION — Experiencia Premium</title>
+
 <style>
-:root{color-scheme:dark;--bg:#08090b;--glass:rgba(255,255,255,.075);--border:rgba(255,255,255,.15);--txt:#f5f6f8;--muted:#a8adb5;--silver:#dce0e6}
-body.light{color-scheme:light;--bg:#eef0f4;--glass:rgba(255,255,255,.62);--border:rgba(80,90,110,.18);--txt:#17191e;--muted:#626875;--silver:#4b515b}
+:root{
+ --bg:#08090c;--panel:rgba(255,255,255,.075);
+ --border:rgba(255,255,255,.16);--text:#f5f6f8;
+ --muted:#a5acb7;--accent:#dce2eb;--shadow:rgba(0,0,0,.32);
+}
+body.light{
+ --bg:#eef0f5;--panel:rgba(255,255,255,.66);
+ --border:rgba(50,60,75,.16);--text:#191c23;
+ --muted:#626b79;--accent:#596473;--shadow:rgba(30,40,60,.1);
+}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at 50% -10%,#626a7733,transparent 50%),var(--bg);color:var(--txt);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;transition:background .3s,color .3s}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{
+ margin:0;background:var(--bg);color:var(--text);
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+ overflow-x:hidden;transition:background .35s,color .35s;
+}
+body:before{
+ content:"QAVÉRION";position:fixed;z-index:-2;pointer-events:none;
+ top:50%;left:50%;white-space:nowrap;
+ transform:translate(-50%,-50%) perspective(800px) rotateX(-12deg);
+ font-size:clamp(4rem,16vw,14rem);font-weight:950;letter-spacing:.1em;
+ color:transparent;-webkit-text-stroke:1px rgba(160,175,195,.07);
+ animation:bgFloat 15s ease-in-out infinite alternate;
+}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer;color:inherit}
 a{color:inherit;text-decoration:none}
-.glass{background:var(--glass);border:1px solid var(--border);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);box-shadow:0 12px 36px #0002,inset 0 1px #ffffff13}
-.wrap{width:min(1180px,92%);margin:auto}
-header{position:sticky;top:0;z-index:10;padding:12px 0;background:var(--bg);background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(25px);border-bottom:1px solid var(--border)}
-.nav{display:flex;align-items:center;gap:14px;justify-content:space-between;flex-wrap:wrap}
-.brand{font-size:1.1rem;font-weight:900;letter-spacing:.17em}
-.brand small{display:block;font-size:.62rem;letter-spacing:.25em;color:var(--muted);margin-top:4px}
-.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.btn{border:1px solid var(--border);border-radius:999px;padding:10px 15px;background:var(--glass);transition:.25s}
-.btn:hover{transform:translateY(-2px);border-color:#dce0e6}
-.btn.primary{background:linear-gradient(135deg,#f7f8fa,#9ea5af);color:#101216;border:0;font-weight:750}
-input,select,textarea{width:100%;background:var(--glass);color:var(--txt);border:1px solid var(--border);border-radius:14px;padding:12px;outline:none}
-input:focus,select:focus,textarea:focus{border-color:#b9c1ce}
-.hero{padding:54px 0 30px}
-.hero-box{position:relative;overflow:hidden;padding:clamp(25px,6vw,65px);border-radius:30px;min-height:300px}
-.hero-box:before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;right:-60px;top:-70px;border:1px solid #ffffff30;box-shadow:0 0 80px #c9d2e322,inset 0 0 70px #ffffff12;animation:orb 12s linear infinite}
-.hero-box:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-20px;top:-30px;border:1px solid #ffffff22;transform:rotateX(65deg);animation:orb 9s linear infinite reverse}
-@keyframes orb{to{transform:rotate(360deg)}}
-.eyebrow{font-size:.72rem;letter-spacing:.25em;color:var(--muted);text-transform:uppercase}
-h1{font-size:clamp(2.4rem,7vw,5.3rem);line-height:.98;letter-spacing:-.06em;margin:18px 0}
-h1 span{background:linear-gradient(100deg,#fff,#858c96);background-clip:text;color:transparent}
-body.light h1 span{background:linear-gradient(100deg,#303640,#89919d);background-clip:text}
-.hero p{color:var(--muted);max-width:520px;line-height:1.7}
-.section-head{display:flex;justify-content:space-between;gap:15px;align-items:end;flex-wrap:wrap;margin:35px 0 18px}
-.section-head h2{margin:0;font-size:1.6rem;letter-spacing:-.04em}
-.filters{display:flex;gap:9px;overflow:auto;padding:3px 2px 15px}
-.filters button{white-space:nowrap}
-.filters button.active{background:linear-gradient(135deg,#e9edf2,#8f98a5);color:#101216}
-.tools{display:grid;grid-template-columns:1fr 190px;gap:10px;margin-bottom:18px}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;margin-bottom:50px}
-.card{position:relative;overflow:hidden;border-radius:23px;transform-style:preserve-3d;transition:transform .25s,border-color .25s;animation:rise .5s both}
-@keyframes rise{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
-.card:hover{transform:perspective(900px) rotateX(2deg) rotateY(-2deg) translateY(-6px);border-color:#dce0e6;box-shadow:0 25px 55px #0003}
-.photo{height:220px;display:grid;place-items:center;background:linear-gradient(145deg,#aeb5c01c,#fff04);overflow:hidden}
-.photo img{width:100%;height:100%;object-fit:cover}
-.photo .placeholder{font-size:4rem;color:var(--silver)}
-.card-body{padding:17px}
-.tag{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
-.card h3{margin:9px 0;font-size:1.08rem}
-.desc{font-size:.84rem;line-height:1.55;color:var(--muted);min-height:38px}
-.price{font-size:1.22rem;font-weight:850;margin:13px 0}
-.card-buttons{display:flex;gap:8px;flex-wrap:wrap}
-.card-buttons .btn{flex:1;font-size:.8rem;padding:10px 8px}
-.card:after{content:"";position:absolute;bottom:0;left:50%;width:24%;height:3px;border-radius:9px;background:linear-gradient(90deg,#727985,#fff,#727985);transform:translateX(-50%);transition:width .3s}
-.card:hover:after{width:82%}
-.empty{grid-column:1/-1;text-align:center;padding:40px 15px;border-radius:20px}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:15px 0 40px}
-.stat{padding:20px;border-radius:20px}
-.stat strong{display:block;font-size:1.7rem;margin-bottom:5px}
-.stat span{color:var(--muted);font-size:.85rem}
-.stars{display:flex;gap:8px;margin-top:10px}
-.stars button{font-size:1.6rem;border:0;background:transparent;color:#858b95;padding:0}
-.stars button.selected{color:#dce0e6}
-footer{border-top:1px solid var(--border);padding:25px 0 40px;color:var(--muted);font-size:.85rem}
-.modal{position:fixed;inset:0;z-index:20;background:#0009;backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:15px}
+.wrap{width:min(1160px,92%);margin:auto}
+.glass{
+ background:var(--panel);border:1px solid var(--border);
+ backdrop-filter:blur(24px) saturate(155%);
+ -webkit-backdrop-filter:blur(24px) saturate(155%);
+ box-shadow:0 15px 45px var(--shadow),inset 0 1px rgba(255,255,255,.08)
+}
+.btn{
+ display:inline-flex;align-items:center;justify-content:center;gap:8px;
+ border:1px solid var(--border);border-radius:999px;padding:11px 16px;
+ background:var(--panel);transition:transform .25s,border-color .25s,background .25s;
+}
+.btn:hover{transform:translateY(-2px);border-color:var(--accent)}
+.btn.primary{
+ color:#101216;background:linear-gradient(120deg,#fff,#a9b2bf);
+ border-color:transparent;font-weight:750
+}
+header{
+ position:sticky;top:0;z-index:30;padding:12px 0;
+ background:color-mix(in srgb,var(--bg) 72%,transparent);
+ backdrop-filter:blur(25px);border-bottom:1px solid var(--border)
+}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-size:1.08rem;font-weight:950;letter-spacing:.15em}
+.brand small{display:block;margin-top:4px;font-size:.58rem;letter-spacing:.24em;color:var(--muted)}
+.nav-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#logo{width:37px;height:37px;object-fit:contain;margin-right:9px;vertical-align:middle}
+.hero{padding:32px 0 25px}
+.hero-box{
+ position:relative;overflow:hidden;border-radius:30px;
+ padding:clamp(25px,6vw,66px);min-height:340px;isolation:isolate
+}
+.hero-box:before,.hero-box:after{
+ content:"";position:absolute;z-index:-1;border-radius:50%;pointer-events:none
+}
+.hero-box:before{
+ width:350px;height:350px;right:-100px;top:-150px;
+ border:1px solid #ffffff28;box-shadow:inset 0 0 80px #dce5f015,0 0 100px #ccd6e20c;
+ animation:heroOrb 12s linear infinite
+}
+.hero-box:after{
+ width:200px;height:200px;right:60px;bottom:-140px;
+ background:radial-gradient(circle,#e6ecf51c,transparent 70%);
+ animation:heroOrb 9s linear infinite reverse
+}
+.eyebrow{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(2.7rem,7vw,5.6rem);line-height:.98;letter-spacing:-.065em;margin:20px 0}
+.metal{
+ color:transparent;background:linear-gradient(100deg,#737b86,#fff,#9ca6b5,#fff,#77818e);
+ background-size:220% auto;background-clip:text;-webkit-background-clip:text;
+ animation:metalShine 8s linear infinite
+}
+body.light .metal{background-image:linear-gradient(100deg,#303640,#8993a1,#454e5a,#9aa2ae);background-clip:text}
+.hero p{max-width:550px;color:var(--muted);line-height:1.8}
+.hero-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;flex-wrap:wrap;margin:34px 0 18px}
+.section-head h2{margin:7px 0 0;font-size:clamp(1.5rem,4vw,2rem);letter-spacing:-.04em}
+.tools{display:grid;grid-template-columns:1fr 190px;gap:10px;margin-bottom:16px}
+input,select,textarea{
+ width:100%;min-width:0;background:var(--panel);color:var(--text);
+ border:1px solid var(--border);border-radius:14px;padding:12px;outline:none
+}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+select option{background:var(--bg);color:var(--text)}
+.filters{display:flex;gap:9px;overflow:auto;padding:3px 2px 15px;scrollbar-width:thin}
+.filters .btn{white-space:nowrap}
+.filters .active{background:linear-gradient(120deg,#fff,#aeb7c4);color:#111}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;margin-bottom:45px}
+.product{
+ position:relative;overflow:hidden;border-radius:23px;
+ transform-style:preserve-3d;transition:transform .25s,border-color .25s,box-shadow .25s;
+ animation:cardIn .65s both
+}
+.product:hover{
+ transform:perspective(900px) rotateX(2deg) rotateY(-2deg) translateY(-6px);
+ border-color:var(--accent);box-shadow:0 28px 55px var(--shadow)
+}
+.product:after{
+ content:"";position:absolute;bottom:0;left:50%;height:3px;width:20%;
+ transform:translateX(-50%);border-radius:9px;
+ background:linear-gradient(90deg,#7b8491,#fff,#7b8491);
+ transition:width .35s
+}
+.product:hover:after{width:85%}
+.photo{
+ height:230px;display:grid;place-items:center;overflow:hidden;
+ background:linear-gradient(145deg,#ffffff0c,#9da9ba12)
+}
+.photo img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.product:hover .photo img{transform:scale(1.045)}
+.placeholder{font-size:4rem;color:var(--muted)}
+.product-body{padding:17px}
+.tag{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.product h3{font-size:1.08rem;margin:10px 0}
+.description{font-size:.85rem;line-height:1.6;color:var(--muted);min-height:38px}
+.price{font-weight:850;font-size:1.2rem;margin:13px 0}
+.product-actions{display:flex;gap:7px;flex-wrap:wrap}
+.product-actions .btn{flex:1;padding:10px 8px;font-size:.79rem}
+.empty{grid-column:1/-1;border-radius:20px;text-align:center;padding:40px 15px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0 42px}
+.stat{padding:22px;border-radius:22px}
+.stat strong{display:block;font-size:1.8rem;margin-bottom:8px}
+.muted{color:var(--muted);font-size:.86rem;line-height:1.6}
+.stars{display:flex;gap:5px;margin-top:10px}
+.stars button{background:transparent;border:0;font-size:1.7rem;color:#777;padding:0}
+.stars button.on{color:#d4dbe6}
+footer{border-top:1px solid var(--border);padding:26px 0 40px;color:var(--muted);font-size:.85rem}
+.modal{
+ position:fixed;inset:0;z-index:100;background:#0009;backdrop-filter:blur(12px);
+ display:none;align-items:center;justify-content:center;padding:14px
+}
 .modal.show{display:flex}
-.modal-box{width:min(650px,100%);max-height:90vh;overflow:auto;padding:23px;border-radius:25px}
-.modal-box h2{margin-top:0}
+.modal-box{width:min(680px,100%);max-height:90vh;overflow:auto;padding:22px;border-radius:25px}
+.modal-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.modal-head h2{font-size:1.25rem}
 .formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.field{display:grid;gap:7px;margin-bottom:12px;font-size:.84rem}
+.field{display:grid;gap:7px;margin-bottom:12px;font-size:.85rem}
 .full{grid-column:1/-1}
-#preview{width:100%;max-height:180px;object-fit:contain;border-radius:14px;margin:10px 0}
-.notice{color:var(--muted);font-size:.8rem;line-height:1.5}
-@media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.photo{height:190px}.hero{padding-top:30px}}
-@media(max-width:520px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.photo{height:145px}.card-body{padding:11px}.card h3{font-size:.93rem}.desc{font-size:.76rem;min-height:0}.card-buttons{display:grid}.card-buttons .btn{width:100%}.tools{grid-template-columns:1fr}.hero-box{min-height:270px}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.nav{gap:10px}.brand{font-size:.94rem}.actions .btn{padding:9px 11px;font-size:.8rem}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+#preview{width:100%;max-height:180px;object-fit:contain;border-radius:14px;margin-top:10px}
+.manage-item{padding:12px;border-radius:14px;margin:8px 0;display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+#toast{
+ position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:300;
+ display:none;max-width:92%;padding:13px 19px;border-radius:999px;
+ background:#e0e5ed;color:#101216;text-align:center;box-shadow:0 10px 40px #0004
+}
+
+/* BIENVENIDA CINEMATOGRÁFICA */
+#intro{
+ position:fixed;inset:0;z-index:9999;display:grid;place-items:center;
+ overflow:hidden;background:#07080b;color:#f5f6f8;
+ perspective:1100px;isolation:isolate;
+ transition:opacity .9s ease,visibility .9s ease
+}
+#intro.exit{opacity:0;visibility:hidden;pointer-events:none}
+.intro-grid{
+ position:absolute;z-index:-2;inset:-50%;opacity:.17;
+ background-image:linear-gradient(#bfc7d0 1px,transparent 1px),linear-gradient(90deg,#bfc7d0 1px,transparent 1px);
+ background-size:55px 55px;
+ transform:perspective(500px) rotateX(62deg) translateY(20%);
+ mask-image:linear-gradient(transparent,#000 40%,transparent 85%);
+ animation:gridMove 16s linear infinite
+}
+.intro-orb{
+ position:absolute;z-index:-1;border-radius:50%;pointer-events:none;
+ border:1px solid #e6edf71c;box-shadow:inset 0 0 80px #dce5f014,0 0 90px #dce5f00b
+}
+.orb-one{width:min(70vw,650px);aspect-ratio:1;top:-28%;left:-15%;animation:orbFloat 12s ease-in-out infinite alternate}
+.orb-two{width:min(55vw,520px);aspect-ratio:1;right:-12%;bottom:-28%;animation:orbFloat 10s ease-in-out infinite alternate-reverse}
+.intro-content{width:min(92%,720px);text-align:center;animation:contentIn 1.3s cubic-bezier(.16,1,.3,1) both}
+.intro-logo{
+ width:78px;height:78px;object-fit:contain;margin:0 auto 24px;
+ filter:drop-shadow(0 12px 28px #dce5f025);
+ animation:logoFloat 5s ease-in-out infinite
+}
+.intro-symbol{
+ width:76px;height:76px;margin:0 auto 24px;display:grid;place-items:center;
+ border:1px solid #ffffff40;border-radius:24px;font-size:2.5rem;font-weight:950;
+ background:linear-gradient(145deg,#ffffff20,#ffffff03);
+ box-shadow:0 18px 60px #0008,inset 0 1px #ffffff50;
+ backdrop-filter:blur(20px);animation:logoFloat 5s ease-in-out infinite
+}
+.intro-eyebrow{font-size:.66rem;letter-spacing:.4em;color:#aeb6c3}
+.intro-title{
+ margin:20px 0 13px;font-size:clamp(2.5rem,10vw,6.7rem);
+ font-weight:950;letter-spacing:.1em;line-height:1.05;
+ color:transparent;background:linear-gradient(110deg,#737b86 5%,#fff 23%,#a5adb8 37%,#fff 48%,#7f8895 66%,#eef1f6 80%,#747d88 95%);
+ background-size:240% auto;background-clip:text;-webkit-background-clip:text;
+ filter:drop-shadow(0 12px 30px #c3cedb20);
+ animation:metalShine 5s linear infinite,titleIn 1.4s .15s both
+}
+.intro-line{width:0;height:1px;margin:22px auto;background:linear-gradient(90deg,transparent,#fff,transparent);animation:lineIn 1.2s .6s ease forwards}
+.intro-subtitle{font-size:.7rem;letter-spacing:.24em;color:#c0c6d0}
+.intro-welcome{margin:27px 0;color:#b8c0cb;font-size:1rem}
+#enter{
+ display:inline-flex;align-items:center;gap:16px;margin-top:12px;padding:15px 23px;
+ border:1px solid #ffffff45;border-radius:999px;color:#f6f7fa;
+ background:linear-gradient(135deg,#ffffff24,#ffffff06);
+ box-shadow:inset 0 1px #ffffff40,0 12px 35px #0005;
+ backdrop-filter:blur(25px);letter-spacing:.1em;font-size:.7rem;
+ transition:transform .3s,background .3s
+}
+#enter:hover{transform:translateY(-4px) scale(1.035);background:#ffffff26}
+.intro-load{width:100px;height:2px;margin:32px auto;background:#ffffff1a;overflow:hidden}
+.intro-load span{display:block;width:35%;height:100%;background:linear-gradient(90deg,transparent,#fff,transparent);animation:loadMove 2s ease-in-out infinite}
+.intro-footer{position:absolute;bottom:23px;left:12px;right:12px;text-align:center;font-size:.55rem;letter-spacing:.22em;color:#77808d}
+
+@keyframes contentIn{from{opacity:0;transform:translateY(28px) rotateX(8deg) scale(.96);filter:blur(12px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes titleIn{from{opacity:0;transform:translateY(18px) rotateX(18deg);filter:blur(10px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes lineIn{to{width:min(260px,60vw)}}
+@keyframes logoFloat{0%,100%{transform:translateY(0) rotateX(10deg) rotateY(-12deg)}50%{transform:translateY(-9px) rotateX(-5deg) rotateY(12deg)}}
+@keyframes orbFloat{from{translate:0 0}to{translate:5vw 4vh}}
+@keyframes gridMove{to{background-position:0 55px,55px 0}}
+@keyframes loadMove{from{transform:translateX(-120%)}to{transform:translateX(350%)}}
+@keyframes metalShine{to{background-position:240% center}}
+@keyframes cardIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bgFloat{from{margin-top:-10px;letter-spacing:.1em}to{margin-top:15px;letter-spacing:.15em}}
+
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.photo{height:190px}}
+@media(max-width:520px){
+ .grid{gap:10px}.photo{height:145px}.product-body{padding:11px}
+ .product h3{font-size:.94rem}.description{font-size:.77rem;min-height:0}
+ .product-actions{display:grid}.product-actions .btn{width:100%;font-size:.75rem}
+ .tools{grid-template-columns:1fr}.hero-box{min-height:300px}
+ .nav{align-items:center}.brand{font-size:.88rem}.brand small{font-size:.48rem}
+ .nav-actions{gap:5px}.nav-actions .btn{padding:9px 10px;font-size:.75rem}
+ .formgrid{grid-template-columns:1fr}.full{grid-column:auto}
+ .intro-title{letter-spacing:.04em}.intro-eyebrow{letter-spacing:.22em}
+ .intro-subtitle{letter-spacing:.13em}
+}
+@media(hover:none){.product:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}
+}
 </style>
 </head>
+
 <body>
+
+<!-- BIENVENIDA -->
+<div id="intro">
+ <div class="intro-grid"></div>
+ <div class="intro-orb orb-one"></div>
+ <div class="intro-orb orb-two"></div>
+ <div class="intro-content">
+  <img id="introLogo" class="intro-logo" src="qaverion-logo.png" alt="QAVÉRION" hidden>
+  <div id="introSymbol" class="intro-symbol">Q</div>
+  <div class="intro-eyebrow">EXPERIENCIA EXCLUSIVA</div>
+  <h1 class="intro-title">QAVÉRION</h1>
+  <div class="intro-line"></div>
+  <div class="intro-subtitle">ESTILO · TECNOLOGÍA · CALIDAD</div>
+  <p class="intro-welcome">El siguiente nivel comienza aquí.</p>
+  <button id="enter" type="button">ENTRAR A LA EXPERIENCIA <span>↗</span></button>
+  <div class="intro-load"><span></span></div>
+ </div>
+ <div class="intro-footer">QAVÉRION® — EXPERIENCIA DIGITAL</div>
+</div>
+
 <header>
  <div class="wrap nav">
-  <a class="brand" href="#">QAVÉRION<small>ESTILO · TECNOLOGÍA · CALIDAD</small></a>
-  <div class="actions">
-   <button class="btn" id="theme">☼ / ☾</button>
-   <button class="btn" id="adminOpen">Administrar</button>
+  <a class="brand" href="#">
+   <img id="logo" src="qaverion-logo.png" alt="" hidden>
+   QAVÉRION
+   <small>ESTILO · TECNOLOGÍA · CALIDAD</small>
+  </a>
+  <div class="nav-actions">
+   <button class="btn" id="theme" type="button">☼ / ☾</button>
+   <button class="btn" id="adminOpen" type="button">Administrar</button>
   </div>
  </div>
 </header>
+
 <main class="wrap">
  <section class="hero">
   <div class="hero-box glass">
-   <div class="eyebrow">Descubre QAVÉRION</div>
-   <h1>Diseño que<br><span>se siente distinto.</span></h1>
-   <p>Explora nuestro catálogo y consulta directamente con nosotros. Aparta tus productos por WhatsApp, sin pagos en línea.</p>
-   <a class="btn primary" href="#catalogo">Explorar catálogo ↗</a>
+   <div class="eyebrow">DESCUBRE QAVÉRION</div>
+   <h1>Diseño que<br><span class="metal">se siente distinto.</span></h1>
+   <p>Descubre tecnología, accesorios y estilo en una experiencia creada para ti. Consulta y aparta directamente con nosotros, sin pagos en línea.</p>
+   <div class="hero-buttons">
+    <a class="btn primary" href="#catalogo">Explorar catálogo ↗</a>
+    <a class="btn" href="https://wa.me/529621456775" target="_blank" rel="noopener">Contactar por WhatsApp</a>
+   </div>
   </div>
  </section>
+
  <section>
-  <div class="section-head"><div><div class="eyebrow">Selección QAVÉRION</div><h2>Catálogo</h2></div><span id="count" class="notice">0 productos</span></div>
+  <div class="section-head">
+   <div><div class="eyebrow">SELECCIÓN QAVÉRION</div><h2>Catálogo</h2></div>
+   <span id="count" class="muted">0 productos</span>
+  </div>
   <div class="filters" id="filters"></div>
   <div class="tools" id="catalogo">
-   <input id="search" placeholder="Buscar productos…">
-   <select id="sort"><option value="new">Más recientes</option><option value="low">Precio: menor a mayor</option><option value="high">Precio: mayor a menor</option></select>
+   <input id="search" placeholder="Buscar productos..." aria-label="Buscar productos">
+   <select id="sort" aria-label="Ordenar productos">
+    <option value="new">Más recientes</option>
+    <option value="low">Precio: menor a mayor</option>
+    <option value="high">Precio: mayor a menor</option>
+   </select>
   </div>
-  <div class="grid" id="products"><div class="glass empty">Cargando catálogo…</div></div>
+  <div class="grid" id="products">
+   <div class="glass empty">Cargando catálogo...</div>
+  </div>
  </section>
+
  <section>
-  <div class="section-head"><div><div class="eyebrow">Tu opinión importa</div><h2>¿Cómo nos calificas?</h2></div></div>
+  <div class="section-head">
+   <div><div class="eyebrow">TU OPINIÓN IMPORTA</div><h2>Tu experiencia</h2></div>
+  </div>
   <div class="stats">
-   <div class="glass stat"><strong id="visits">1</strong><span>Visitas en este navegador</span></div>
-   <div class="glass stat"><strong>★★★★★</strong><span>Califica tu experiencia</span><div class="stars" id="stars"><button data-n="1">★</button><button data-n="2">★</button><button data-n="3">★</button><button data-n="4">★</button><button data-n="5">★</button></div><p class="notice" id="ratingNote">Selecciona de una a cinco estrellas.</p></div>
+   <div class="glass stat">
+    <strong id="visits">1</strong>
+    <span class="muted">Visitas en este navegador</span>
+   </div>
+   <div class="glass stat">
+    <strong>★★★★★</strong>
+    <span class="muted">Califica nuestra tienda</span>
+    <div class="stars" id="stars" aria-label="Calificar con estrellas">
+     <button type="button" data-n="1" aria-label="1 estrella">★</button>
+     <button type="button" data-n="2" aria-label="2 estrellas">★</button>
+     <button type="button" data-n="3" aria-label="3 estrellas">★</button>
+     <button type="button" data-n="4" aria-label="4 estrellas">★</button>
+     <button type="button" data-n="5" aria-label="5 estrellas">★</button>
+    </div>
+    <p class="muted" id="ratingNote">Selecciona tu calificación.</p>
+   </div>
   </div>
  </section>
 </main>
-<footer><div class="wrap">© <span id="year"></span> QAVÉRION · Atención personalizada
- <p><a href="https://www.instagram.com/qaverion/" target="_blank" rel="noopener">Instagram @qaverion</a> · <a href="https://wa.me/529621456775" target="_blank" rel="noopener">WhatsApp</a></p>
-</div></footer>
 
+<footer>
+ <div class="wrap">
+  © <span id="year"></span> QAVÉRION · Experiencia premium
+  <p><a href="https://www.instagram.com/qaverion/" target="_blank" rel="noopener">Instagram @qaverion</a> · <a href="https://wa.me/529621456775" target="_blank" rel="noopener">WhatsApp</a></p>
+ </div>
+</footer>
+
+<!-- PANEL ADMINISTRADOR -->
 <div class="modal" id="adminModal">
  <div class="modal-box glass">
-  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2>Panel de administración</h2><button class="btn" id="close">Cerrar ✕</button></div>
+  <div class="modal-head">
+   <h2>Panel de administración</h2>
+   <button class="btn" id="close" type="button">Cerrar ✕</button>
+  </div>
   <div id="login">
-   <p class="notice">Acceso reservado a la cuenta administradora autorizada en Firebase.</p>
-   <button class="btn primary" id="google">Continuar con Google</button>
-   <p id="authStatus" class="notice"></p>
+   <p class="muted">Acceso exclusivo para la cuenta administradora autorizada.</p>
+   <button class="btn primary" id="google" type="button">Continuar con Google</button>
+   <p id="authStatus" class="muted"></p>
   </div>
   <div id="editor" hidden>
-   <p class="notice" id="who"></p>
+   <p class="muted" id="who"></p>
    <form id="productForm">
     <input type="hidden" id="pid">
     <div class="formgrid">
-     <label class="field">Nombre<input id="name" required maxlength="100"></label>
-     <label class="field">Categoría<select id="category"><option>Ropa</option><option>Audio</option><option>Cargadores</option><option>Accesorios</option><option>Móviles</option><option>Otros</option></select></label>
-     <label class="field">Precio (MXN)<input id="price" type="number" min="0" step=".01" required></label>
-     <label class="field">Existencias<input id="qty" type="number" min="0" step="1" value="1" required></label>
-     <label class="field full">Descripción<textarea id="description" rows="3" maxlength="500"></textarea></label>
-     <label class="field full">Imagen desde galería<input id="image" type="file" accept="image/*"><span class="notice">La imagen se reduce antes de guardarse. Firestore tiene límites de tamaño.</span><img id="preview" hidden></label>
-     <label class="field full"><span><input id="published" type="checkbox" checked style="width:auto"> Publicar producto en la tienda</span></label>
+     <label class="field">Nombre del producto
+      <input id="name" required maxlength="100">
+     </label>
+     <label class="field">Categoría
+      <select id="category">
+       <option>Ropa</option><option>Audio</option><option>Cargadores</option>
+       <option>Accesorios</option><option>Móviles</option><option>Otros</option>
+      </select>
+     </label>
+     <label class="field">Precio en MXN
+      <input id="price" type="number" min="0" step=".01" required>
+     </label>
+     <label class="field">Existencias
+      <input id="qty" type="number" min="0" step="1" value="1" required>
+     </label>
+     <label class="field full">Descripción
+      <textarea id="description" rows="3" maxlength="500"></textarea>
+     </label>
+     <label class="field full">Imagen desde tu galería
+      <input id="image" type="file" accept="image/*">
+      <span class="muted">Se comprimirá antes de guardarse. Firestore tiene límites de tamaño.</span>
+      <img id="preview" hidden alt="Vista previa">
+     </label>
+     <label class="field full">
+      <span><input id="published" type="checkbox" checked style="width:auto"> Publicar producto</span>
+     </label>
     </div>
     <button class="btn primary" type="submit" id="save">Guardar producto</button>
     <button class="btn" type="button" id="reset">Limpiar</button>
     <button class="btn" type="button" id="logout">Cerrar sesión</button>
    </form>
-   <h3>Mis productos</h3><div id="manage" class="notice"></div>
+   <h3>Productos administrados</h3>
+   <div id="manage" class="muted"></div>
   </div>
  </div>
 </div>
-<div id="toast" style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:50;padding:12px 18px;border-radius:99px;background:#dce0e6;color:#111;display:none;max-width:90%;text-align:center"></div>
+
+<div id="toast" role="status"></div>
 
 <script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {getAuth,GoogleAuthProvider,signInWithPopup,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {getFirestore,collection,addDoc,updateDoc,deleteDoc,doc,onSnapshot,serverTimestamp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import{getAuth,GoogleAuthProvider,signInWithPopup,onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import{getFirestore,collection,addDoc,updateDoc,deleteDoc,doc,onSnapshot,serverTimestamp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-/* CONFIGURACIÓN DE TU PROYECTO FIREBASE */
+/* CONFIGURACIÓN FIREBASE */
 const firebaseConfig={
  apiKey:"AIzaSyBcjUG8a2kL7pE0VtBrbxOoqMBlRnF90nY",
  authDomain:"qaverion-4f93b.firebaseapp.com",
@@ -172,41 +428,204 @@ const WA="529621456775";
 const IG="https://www.instagram.com/qaverion/";
 const CATS=["Todos","Ropa","Audio","Cargadores","Accesorios","Móviles","Otros"];
 const $=id=>document.getElementById(id);
-let app,auth,db,user=null,products=[],photoData="";
+let auth,db,user=null,products=[],photoData="",activeCat="Todos",introClosed=false;
 const safe=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-function toast(s){$("toast").textContent=s;$("toast").style.display="block";setTimeout(()=>$("toast").style.display="none",2600)}
-function waLink(p,verb){return "https://wa.me/"+WA+"?text="+encodeURIComponent(`Hola QAVÉRION, quiero ${verb} el producto "${p.name}"${p.price!=null?" (precio $"+p.price+" MXN)":""}. ¿Me pueden dar información?`)}
-let activeCat="Todos";
-function renderFilters(){$("filters").innerHTML=CATS.map(c=>`<button class="btn ${activeCat===c?"active":""}" data-cat="${safe(c)}">${safe(c)}</button>`).join("");$("filters").querySelectorAll("[data-cat]").forEach(b=>b.onclick=()=>{activeCat=b.dataset.cat;renderFilters();renderProducts()})}
+function toast(msg){$("toast").textContent=msg;$("toast").style.display="block";setTimeout(()=>$("toast").style.display="none",3000)}
+
+/* BIENVENIDA */
+const intro=$("intro");
+function closeIntro(){
+ if(introClosed)return;
+ introClosed=true;
+ intro.classList.add("exit");
+ try{sessionStorage.setItem("qv-intro-seen","1")}catch(e){}
+ setTimeout(()=>intro.style.display="none",950);
+}
+$("enter").addEventListener("click",closeIntro);
+try{
+ if(sessionStorage.getItem("qv-intro-seen")==="1"){
+  intro.style.display="none";introClosed=true;
+ }
+}catch(e){}
+if(!introClosed)setTimeout(closeIntro,7500);
+
+/* LOGO OPCIONAL */
+for(const id of ["logo","introLogo"]){
+ const img=$(id);
+ img.addEventListener("load",()=>{img.hidden=false;if(id==="introLogo")$("introSymbol").hidden=true});
+ img.addEventListener("error",()=>{img.hidden=true;if(id==="introLogo")$("introSymbol").hidden=false});
+}
+
+/* TEMA */
+$("theme").onclick=()=>{
+ document.body.classList.toggle("light");
+ try{localStorage.setItem("qv-theme",document.body.classList.contains("light")?"light":"dark")}catch(e){}
+};
+try{if(localStorage.getItem("qv-theme")==="light")document.body.classList.add("light")}catch(e){}
+
+/* VISITAS Y CALIFICACIÓN LOCAL */
+try{
+ const visits=Number(localStorage.getItem("qv-visits")||0)+1;
+ localStorage.setItem("qv-visits",visits);
+ $("visits").textContent=visits.toLocaleString("es-MX");
+ const old=Number(localStorage.getItem("qv-rating")||0);
+ setStars(old);
+}catch(e){$("visits").textContent="1"}
+function setStars(n){
+ $("stars").querySelectorAll("button").forEach(b=>b.classList.toggle("on",Number(b.dataset.n)<=n));
+}
+$("stars").addEventListener("click",e=>{
+ const b=e.target.closest("[data-n]");if(!b)return;
+ try{localStorage.setItem("qv-rating",b.dataset.n)}catch(e){}
+ setStars(Number(b.dataset.n));
+ $("ratingNote").textContent="¡Gracias por tu calificación!";
+});
+$("year").textContent=new Date().getFullYear();
+
+/* CATÁLOGO */
+function renderFilters(){
+ $("filters").innerHTML=CATS.map(c=>`<button type="button" class="btn ${activeCat===c?"active":""}" data-cat="${safe(c)}">${safe(c)}</button>`).join("");
+ $("filters").querySelectorAll("[data-cat]").forEach(b=>b.onclick=()=>{
+  activeCat=b.dataset.cat;renderFilters();renderProducts();
+ });
+}
+function waLink(p,action){
+ const msg=`Hola QAVÉRION, quiero ${action} el producto "${p.name}"${p.price!=null?" (precio $"+p.price+" MXN)":""}. ¿Me pueden confirmar disponibilidad?`;
+ return "https://wa.me/"+WA+"?text="+encodeURIComponent(msg);
+}
 function renderProducts(){
+ const query=$("search").value.trim().toLowerCase();
  let list=products.filter(p=>p.published===true||p.status==="published"||p.publicado===true);
- const q=$("search").value.trim().toLowerCase();
- list=list.filter(p=>(activeCat==="Todos"||p.category===activeCat)&&(`${p.name||""} ${p.description||""} ${p.category||""}`).toLowerCase().includes(q));
+ list=list.filter(p=>(activeCat==="Todos"||p.category===activeCat)&&(`${p.name||""} ${p.description||""} ${p.category||""}`).toLowerCase().includes(query));
  if($("sort").value==="low")list.sort((a,b)=>(a.price||0)-(b.price||0));
  if($("sort").value==="high")list.sort((a,b)=>(b.price||0)-(a.price||0));
  $("count").textContent=list.length+" productos";
- $("products").innerHTML=list.length?list.map(p=>`<article class="card glass"><div class="photo">${p.imageUrl?`<img loading="lazy" src="${safe(p.imageUrl)}" alt="${safe(p.name)}">`:`<div class="placeholder">◇</div>`}</div><div class="card-body"><div class="tag">${safe(p.category||"QAVÉRION")}</div><h3>${safe(p.name)}</h3><p class="desc">${safe(p.description||"Consulta disponibilidad y detalles por WhatsApp.")}</p><div class="price">${p.price!=null?"$"+Number(p.price).toLocaleString("es-MX")+" MXN":"Consultar precio"}</div><div class="card-buttons"><a class="btn primary" target="_blank" rel="noopener" href="${waLink(p,"apartar")}">Apartar</a><a class="btn" target="_blank" rel="noopener" href="${waLink(p,"consultar")}">Consultar</a><a class="btn" target="_blank" rel="noopener" href="${IG}">Instagram</a></div></div></article>`).join(""):`<div class="glass empty"><h3>Próximamente</h3><p class="notice">Todavía no hay productos publicados en esta categoría.</p></div>`;
+ $("products").innerHTML=list.length?list.map(p=>`
+ <article class="product glass">
+  <div class="photo">${p.imageUrl?`<img loading="lazy" src="${safe(p.imageUrl)}" alt="${safe(p.name)}">`:`<div class="placeholder">◇</div>`}</div>
+  <div class="product-body">
+   <div class="tag">${safe(p.category||"QAVÉRION")}</div>
+   <h3>${safe(p.name)}</h3>
+   <p class="description">${safe(p.description||"Consulta detalles y disponibilidad.")}</p>
+   <div class="price">${p.price!=null?"$"+Number(p.price).toLocaleString("es-MX")+" MXN":"Consultar precio"}</div>
+   <div class="product-actions">
+    <a class="btn primary" href="${waLink(p,"apartar")}" target="_blank" rel="noopener">Apartar</a>
+    <a class="btn" href="${waLink(p,"consultar")}" target="_blank" rel="noopener">Consultar</a>
+    <a class="btn" href="${IG}" target="_blank" rel="noopener">Instagram</a>
+   </div>
+  </div>
+ </article>`).join(""):`<div class="glass empty"><h3>Próximamente</h3><p class="muted">Todavía no hay productos publicados en esta sección.</p></div>`;
+}
+$("search").addEventListener("input",renderProducts);
+$("sort").addEventListener("change",renderProducts);
+
+/* PANEL ADMIN */
+$("adminOpen").onclick=()=>$("adminModal").classList.add("show");
+$("close").onclick=()=>$("adminModal").classList.remove("show");
+$("adminModal").addEventListener("click",e=>{if(e.target===$("adminModal"))$("adminModal").classList.remove("show")});
+$("google").onclick=async()=>{
+ try{await signInWithPopup(auth,new GoogleAuthProvider())}
+ catch(e){$("authStatus").textContent="No se pudo iniciar sesión: "+e.code}
+};
+$("logout").onclick=()=>signOut(auth);
+$("reset").onclick=clearForm;
+function clearForm(){
+ $("productForm").reset();$("pid").value="";$("qty").value=1;
+ $("published").checked=true;photoData="";$("preview").hidden=true;$("save").textContent="Guardar producto";
+}
+function editProduct(id){
+ const p=products.find(x=>x.id===id);if(!p)return;
+ $("pid").value=p.id;$("name").value=p.name||"";
+ $("category").value=CATS.includes(p.category)?p.category:"Otros";
+ $("price").value=p.price??"";$("qty").value=p.quantity??1;
+ $("description").value=p.description||"";$("published").checked=!!p.published;
+ photoData=p.imageUrl||"";
+ if(photoData){$("preview").src=photoData;$("preview").hidden=false}else $("preview").hidden=true;
+ $("save").textContent="Guardar cambios";
+ $("productForm").scrollIntoView({behavior:"smooth",block:"start"});
 }
 function renderManage(){
- $("manage").innerHTML=products.map(p=>`<div class="glass" style="padding:12px;border-radius:14px;margin:8px 0;display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap"><span>${safe(p.name)} · ${p.published?"Publicado":"Borrador"}</span><span><button class="btn" data-edit="${p.id}">Editar</button> <button class="btn" data-pub="${p.id}">${p.published?"Ocultar":"Publicar"}</button> <button class="btn" data-del="${p.id}">Eliminar</button></span></div>`).join("")||"Aún no hay productos.";
+ $("manage").innerHTML=products.map(p=>`
+ <div class="glass manage-item">
+  <span>${safe(p.name)} · ${p.published?"Publicado":"Borrador"}</span>
+  <span>
+   <button class="btn" data-edit="${p.id}">Editar</button>
+   <button class="btn" data-pub="${p.id}">${p.published?"Ocultar":"Publicar"}</button>
+   <button class="btn" data-del="${p.id}">Eliminar</button>
+  </span>
+ </div>`).join("")||"Aún no hay productos.";
  $("manage").querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>editProduct(b.dataset.edit));
- $("manage").querySelectorAll("[data-pub]").forEach(b=>b.onclick=async()=>{const p=products.find(x=>x.id===b.dataset.pub);await updateDoc(doc(db,"products",p.id),{published:!p.published,status:!p.published?"published":"draft",updatedAt:serverTimestamp()})});
- $("manage").querySelectorAll("[data-del]").forEach(b=>b.onclick=async()=>{if(confirm("¿Eliminar este producto?"))await deleteDoc(doc(db,"products",b.dataset.del))});
+ $("manage").querySelectorAll("[data-pub]").forEach(b=>b.onclick=async()=>{
+  const p=products.find(x=>x.id===b.dataset.pub);if(!p)return;
+  try{await updateDoc(doc(db,"products",p.id),{published:!p.published,status:!p.published?"published":"draft",updatedAt:serverTimestamp()})}
+  catch(e){toast("No se pudo cambiar la publicación.")}
+ });
+ $("manage").querySelectorAll("[data-del]").forEach(b=>b.onclick=async()=>{
+  if(!confirm("¿Seguro que quieres eliminar este producto?"))return;
+  try{await deleteDoc(doc(db,"products",b.dataset.del));toast("Producto eliminado")}
+  catch(e){toast("No se pudo eliminar el producto.")}
+ });
 }
-function editProduct(id){const p=products.find(x=>x.id===id);if(!p)return;$("pid").value=p.id;$("name").value=p.name||"";$("category").value=CATS.includes(p.category)?p.category:"Otros";$("price").value=p.price??"";$("qty").value=p.quantity??1;$("description").value=p.description||"";$("published").checked=!!p.published;photoData=p.imageUrl||"";if(photoData){$("preview").src=photoData;$("preview").hidden=false}else $("preview").hidden=true;$("save").textContent="Guardar cambios";window.scrollTo({top:0,behavior:"smooth"})}
-function clearForm(){$("productForm").reset();$("pid").value="";$("qty").value=1;$("published").checked=true;photoData="";$("preview").hidden=true;$("save").textContent="Guardar producto"}
-$("theme").onclick=()=>{document.body.classList.toggle("light");localStorage.setItem("qv-theme",document.body.classList.contains("light")?"light":"dark")};
-if(localStorage.getItem("qv-theme")==="light")document.body.classList.add("light");
-let v=Number(localStorage.getItem("qv-visits")||0)+1;localStorage.setItem("qv-visits",v);$("visits").textContent=v.toLocaleString("es-MX");
-$("stars").onclick=e=>{const b=e.target.closest("[data-n]");if(!b)return;const n=Number(b.dataset.n);localStorage.setItem("qv-rating",n);$("stars").querySelectorAll("button").forEach(x=>x.classList.toggle("selected",Number(x.dataset.n)<=n));$("ratingNote").textContent="¡Gracias por tu calificación!"};
-const oldRating=Number(localStorage.getItem("qv-rating")||0);$("stars").querySelectorAll("button").forEach(b=>b.classList.toggle("selected",Number(b.dataset.n)<=oldRating));
-$("year").textContent=new Date().getFullYear();$("search").oninput=renderProducts;$("sort").onchange=renderProducts;
-$("adminOpen").onclick=()=>$("adminModal").classList.add("show");$("close").onclick=()=>$("adminModal").classList.remove("show");$("adminModal").onclick=e=>{if(e.target===$("adminModal"))$("adminModal").classList.remove("show")};
-$("google").onclick=async()=>{try{await signInWithPopup(auth,new GoogleAuthProvider())}catch(e){$("authStatus").textContent="No se pudo iniciar sesión: "+e.code}};
-$("logout").onclick=()=>signOut(auth);$("reset").onclick=clearForm;
-$("image").onchange=async e=>{const f=e.target.files?.[0];if(!f)return;if(!f.type.startsWith("image/"))return toast("Elige una imagen válida");try{const bmp=await createImageBitmap(f);const scale=Math.min(1,700/Math.max(bmp.width,bmp.height));const c=document.createElement("canvas");c.width=Math.round(bmp.width*scale);c.height=Math.round(bmp.height*scale);c.getContext("2d").drawImage(bmp,0,0,c.width,c.height);photoData=c.toDataURL("image/jpeg",.65);bmp.close();if(photoData.length>700000)return toast("La imagen es demasiado grande. Prueba una foto más pequeña.");$("preview").src=photoData;$("preview").hidden=false}catch(err){toast("No se pudo abrir la imagen")}};
-$("productForm").onsubmit=async e=>{e.preventDefault();if(!user||user.email!==ADMIN_EMAIL||!user.emailVerified)return toast("Necesitas iniciar sesión con la cuenta administradora verificada");const data={name:$("name").value.trim(),category:$("category").value,price:Number($("price").value),quantity:Number($("qty").value),description:$("description").value.trim(),imageUrl:photoData,published:$("published").checked,status:$("published").checked?"published":"draft",updatedAt:serverTimestamp()};if(!data.name)return toast("Escribe el nombre del producto");if(!photoData){const old=products.find(p=>p.id===$("pid").value);if(old)data.imageUrl=old.imageUrl||""}try{if($("pid").value)await updateDoc(doc(db,"products",$("pid").value),data);else await addDoc(collection(db,"products"),{...data,createdAt:serverTimestamp()});clearForm();toast("Producto guardado")}catch(err){console.error(err);toast("No se pudo guardar. Revisa las reglas de Firestore.")}};
-try{app=initializeApp(firebaseConfig);auth=getAuth(app);db=getFirestore(app);onAuthStateChanged(auth,u=>{user=u;const ok=!!u&&u.email===ADMIN_EMAIL&&u.emailVerified;$("login").hidden=ok;$("editor").hidden=!ok;if(u&&!ok)$("authStatus").textContent="Esta cuenta no tiene permisos de administrador.";if(ok)$("who").textContent="Sesión: "+u.email+" · Solo administrador";});onSnapshot(collection(db,"products"),snap=>{products=snap.docs.map(d=>({id:d.id,...d.data()}));renderProducts();if(user?.email===ADMIN_EMAIL)renderManage()},err=>{console.error(err);$("products").innerHTML='<div class="glass empty">No se pudo conectar con el catálogo. Revisa la configuración de Firebase.</div>'})}catch(e){console.error(e);$("products").innerHTML='<div class="glass empty">Error al iniciar Firebase.</div>'}
+
+/* IMÁGENES: COMPRIMIR ANTES DE GUARDAR */
+$("image").addEventListener("change",async e=>{
+ const f=e.target.files?.[0];if(!f)return;
+ if(!f.type.startsWith("image/"))return toast("Selecciona una imagen válida.");
+ try{
+  const bitmap=await createImageBitmap(f);
+  const scale=Math.min(1,700/Math.max(bitmap.width,bitmap.height));
+  const canvas=document.createElement("canvas");
+  canvas.width=Math.round(bitmap.width*scale);canvas.height=Math.round(bitmap.height*scale);
+  canvas.getContext("2d").drawImage(bitmap,0,0,canvas.width,canvas.height);
+  photoData=canvas.toDataURL("image/jpeg",.62);bitmap.close();
+  if(photoData.length>700000){photoData="";return toast("Imagen demasiado grande. Prueba otra foto.")}
+  $("preview").src=photoData;$("preview").hidden=false;
+ }catch(err){toast("No se pudo procesar la imagen.")}
+});
+$("productForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ if(!user||user.email!==ADMIN_EMAIL||!user.emailVerified)return toast("Inicia sesión con la cuenta administradora verificada.");
+ const id=$("pid").value;
+ const previous=products.find(p=>p.id===id);
+ const data={
+  name:$("name").value.trim(),category:$("category").value,
+  price:Number($("price").value),quantity:Number($("qty").value),
+  description:$("description").value.trim(),
+  imageUrl:photoData||(previous?.imageUrl||""),
+  published:$("published").checked,
+  status:$("published").checked?"published":"draft",
+  updatedAt:serverTimestamp()
+ };
+ if(!data.name)return toast("Escribe el nombre del producto.");
+ try{
+  if(id)await updateDoc(doc(db,"products",id),data);
+  else await addDoc(collection(db,"products"),{...data,createdAt:serverTimestamp()});
+  clearForm();toast("Producto guardado correctamente.");
+ }catch(err){console.error(err);toast("No se pudo guardar. Revisa las reglas y el tamaño de la imagen en Firestore.")}
+});
+
+/* INICIAR FIREBASE */
+try{
+ const app=initializeApp(firebaseConfig);
+ auth=getAuth(app);db=getFirestore(app);
+ onAuthStateChanged(auth,u=>{
+  user=u;
+  const allowed=!!u&&u.email===ADMIN_EMAIL&&u.emailVerified;
+  $("login").hidden=allowed;$("editor").hidden=!allowed;
+  if(u&&!allowed)$("authStatus").textContent="Esta cuenta no está autorizada como administradora.";
+  if(allowed){$("who").textContent="Sesión: "+u.email;renderManage()}
+ });
+ onSnapshot(collection(db,"products"),snap=>{
+  products=snap.docs.map(d=>({id:d.id,...d.data()}));
+  renderProducts();if(user?.email===ADMIN_EMAIL)renderManage();
+ },err=>{
+  console.error(err);
+  $("products").innerHTML='<div class="glass empty">No se pudo conectar con el catálogo. Revisa Firebase y las reglas de Firestore.</div>';
+ });
+}catch(e){
+ console.error(e);
+ $("products").innerHTML='<div class="glass empty">Error al iniciar Firebase. Revisa la configuración.</div>';
+}
 renderFilters();
 </script>
 </body>
