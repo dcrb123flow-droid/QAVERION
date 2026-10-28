@@ -3,277 +3,350 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101114">
-<title>QAVÉRION — Tecnología y estilo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090a0d">
+<meta name="description" content="QAVÉRION: tecnología, estilo e innovación.">
+<title>QAVÉRION | Tecnología y estilo</title>
+
 <style>
 :root{
- --bg:#101114;--fg:#f7f7f8;--muted:#a5a7af;
- --glass:rgba(255,255,255,.075);--glass2:rgba(255,255,255,.12);
- --line:rgba(255,255,255,.17);--accent:#d8dbe1;
- --shadow:0 12px 45px #0005;
+  color-scheme:dark;
+  --bg:#090a0d;
+  --fg:#f7f8fb;
+  --muted:#a7abb5;
+  --glass:rgba(255,255,255,.075);
+  --glass2:rgba(255,255,255,.13);
+  --border:rgba(255,255,255,.19);
+  --shine:rgba(255,255,255,.5);
+  --shadow:0 18px 55px rgba(0,0,0,.27);
+  --radius:24px;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
- margin:0;background:var(--bg);color:var(--fg);
- font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;
- min-height:100vh;overflow-x:hidden;
-}
-body:before{
- content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
- background:
- radial-gradient(ellipse at 15% 15%,#aeb6c41b,transparent 42%),
- radial-gradient(ellipse at 90% 70%,#8e9baa16,transparent 45%),
- linear-gradient(145deg,#16181d,#090a0c);
-}
-body:after{
- content:"Q";position:fixed;z-index:-1;pointer-events:none;
- left:50%;top:48%;transform:translate(-50%,-50%);
- font-size:min(90vw,780px);font-weight:900;
- color:#ffffff05;line-height:1;
+  margin:0;min-height:100vh;background:var(--bg);color:var(--fg);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  overflow-x:hidden;isolation:isolate;
 }
 button,input,textarea,select{font:inherit}
-button{cursor:pointer;color:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+button{color:inherit;cursor:pointer}
+a{color:inherit;text-decoration:none}
+button:focus-visible,a:focus-visible,input:focus-visible,
+textarea:focus-visible,select:focus-visible{
+  outline:2px solid #e1e7f0;outline-offset:3px
+}
+
+/* Fondo QAVÉRION */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(5,6,8,.48),rgba(5,6,8,.88)),
+    url("./qaverion-logo.png") center 42%/min(90vw,950px) auto no-repeat,
+    linear-gradient(145deg,#30343d,#090a0d 72%);
+  opacity:.9;animation:ambient 18s ease-in-out infinite alternate;
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 10% 10%,#dfe8f01a,transparent 38%),
+    radial-gradient(ellipse at 90% 80%,#a4b3c51b,transparent 42%);
+}
+@keyframes ambient{
+  from{background-position:center 42%,center 42%,center}
+  to{background-position:center 46%,center 46%,center}
+}
+
+/* Liquid Glass */
 .glass{
- background:var(--glass);border:1px solid var(--line);
- backdrop-filter:blur(24px) saturate(150%);
- -webkit-backdrop-filter:blur(24px) saturate(150%);
- box-shadow:var(--shadow),inset 0 1px #ffffff0b;
+  position:relative;isolation:isolate;
+  background:linear-gradient(135deg,
+    rgba(255,255,255,.13),
+    rgba(255,255,255,.035) 43%,
+    rgba(255,255,255,.075));
+  border:1px solid var(--border);border-radius:var(--radius);
+  -webkit-backdrop-filter:blur(22px) saturate(165%);
+  backdrop-filter:blur(22px) saturate(165%);
+  box-shadow:var(--shadow),inset 0 1px 1px #ffffff20,
+    inset 0 -1px 1px #ffffff08;
+}
+.glass::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  pointer-events:none;padding:1px;
+  background:linear-gradient(125deg,#ffffff75,transparent 23%,
+    #ffffff09 48%,#ffffff35 72%,transparent);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
 }
 button,.btn{
- border:1px solid var(--line);background:var(--glass2);
- border-radius:15px;padding:11px 16px;
- transition:transform .2s,border-color .2s,background .2s;
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  min-height:42px;padding:10px 15px;border:1px solid var(--border);
+  border-radius:15px;background:var(--glass2);color:var(--fg);
+  transition:transform .2s ease,background .2s ease,border-color .2s ease;
 }
-button:hover,.btn:hover{transform:translateY(-2px);border-color:#ffffff65}
+button:hover,.btn:hover{
+  transform:translateY(-2px);border-color:#ffffff65;
+  background:rgba(255,255,255,.17)
+}
 button:active{transform:scale(.98)}
-a{color:inherit}
+.primary{background:#e8ebf0;color:#14161a;border-color:#fff}
+.primary:hover{background:#fff;color:#090a0d}
+.danger{border-color:#c8666660;color:#ffbaba}
+.hidden{display:none!important}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+h1,h2,h3,p{overflow-wrap:anywhere}
+h1{font-size:clamp(35px,7vw,68px);letter-spacing:-2px;line-height:1.04}
+h2{letter-spacing:-.6px}
+main{width:min(1180px,calc(100% - 28px));margin:auto}
+section{margin:25px 0}
 header{
- position:sticky;top:10px;z-index:20;margin:10px auto;
- width:min(1180px,calc(100% - 24px));border-radius:23px;
- padding:12px 17px;display:flex;align-items:center;
- justify-content:space-between;gap:12px;
+  position:sticky;top:8px;z-index:30;
+  width:min(1180px,calc(100% - 20px));margin:8px auto 18px;
+  padding:11px 16px;display:flex;align-items:center;
+  justify-content:space-between;gap:12px;border-radius:22px
 }
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:3px}
 .brand img{width:40px;height:40px;object-fit:contain}
-nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-main{width:min(1180px,calc(100% - 28px));margin:auto}
+nav{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
 .hero{
- min-height:300px;border-radius:30px;padding:42px 24px;
- display:flex;flex-direction:column;justify-content:center;
- align-items:center;text-align:center;position:relative;overflow:hidden;
+  min-height:320px;padding:35px 20px;border-radius:30px;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;text-align:center;overflow:hidden
 }
-.hero img{width:100px;height:100px;object-fit:contain;filter:drop-shadow(0 0 25px #fff2)}
-h1{font-size:clamp(34px,7vw,68px);letter-spacing:-2px;margin:12px 0}
-h2{letter-spacing:-.5px}
-.muted{color:var(--muted)}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}
+.hero img{width:95px;height:95px;object-fit:contain;
+  filter:drop-shadow(0 0 22px #fff3)}
+.hero h1{margin:16px 0 8px}
+.hero p{max-width:540px;line-height:1.7}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
 input,textarea,select{
- width:100%;padding:12px 13px;border-radius:13px;
- color:var(--fg);background:#ffffff09;border:1px solid var(--line);
- outline:none;
+  width:100%;min-width:0;padding:12px 13px;border:1px solid var(--border);
+  border-radius:13px;color:var(--fg);background:rgba(10,11,14,.55);
 }
-input:focus,textarea:focus,select:focus{border-color:#ffffff85}
-select option{background:#202127;color:white}
-.search{flex:1;min-width:180px}
-.catalog{
- display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:17px;
+input:focus,textarea:focus,select:focus{border-color:#ffffff80}
+select option{background:#17191e;color:#fff}
+.search{flex:1;min-width:170px}
+.catalog{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px}
+.product{overflow:hidden;border-radius:23px;transition:transform .22s,border-color .22s}
+.product:hover{transform:translateY(-4px) scale(1.01);border-color:#ffffff58}
+.product-photo,.product-placeholder{
+  width:100%;aspect-ratio:1/1;background:#ffffff08;
 }
-.product{
- overflow:hidden;border-radius:23px;cursor:pointer;
- transition:transform .22s,border-color .22s;
-}
-.product:hover{transform:translateY(-5px);border-color:#ffffff55}
-.product-photo{
- width:100%;aspect-ratio:1/1;display:block;object-fit:cover;
- background:#ffffff08;
-}
-.product-placeholder{
- aspect-ratio:1/1;display:grid;place-items:center;
- color:#ffffff35;font-size:45px;
-}
-.product-bottom{padding:13px}
-.product-bottom button{width:100%;margin-top:8px}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.product-photo{display:block;object-fit:cover}
+.product-placeholder{display:grid;place-items:center;font-size:55px;color:#ffffff45}
+.product-bottom{padding:12px}
+.product-bottom button{width:100%;margin-top:6px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin:9px 0}
 .tag{
- display:inline-flex;padding:5px 9px;border:1px solid #ffffff2b;
- border-radius:999px;background:#ffffff0d;font-size:12px;color:#e3e5e9;
+  display:inline-flex;align-items:center;gap:5px;padding:5px 9px;
+  font-size:12px;border:1px solid #ffffff32;border-radius:999px;
+  background:#ffffff0c;color:#eceef2
 }
-.price{font-size:22px;font-weight:750}
-section{margin:27px 0}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.stat{padding:16px;border-radius:19px}
-.stat strong{display:block;font-size:25px}
-.panel{padding:20px;border-radius:24px;margin:20px 0}
-.hidden{display:none!important}
-#detail{position:fixed;inset:0;z-index:50;overflow:auto;
- background:#08090bf0;padding:20px}
-.detail-inner{width:min(920px,100%);margin:25px auto;padding:20px;border-radius:28px}
-.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}
-.detail-img{width:100%;max-height:520px;object-fit:contain;border-radius:20px;background:#ffffff08}
-.field{margin:10px 0}
-.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
-.row{display:flex;gap:9px;flex-wrap:wrap}
-.row>*{flex:1}
-.review{padding:15px;border-radius:17px;margin:10px 0}
-.stars{color:#f5cc71;letter-spacing:2px}
-footer{text-align:center;padding:40px 12px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.stat{padding:16px;border-radius:20px}
+.stat strong{display:block;font-size:26px;margin-top:5px}
+.panel{padding:20px;border-radius:24px}
+.field{margin:12px 0}
+.field label{display:block;color:var(--muted);font-size:13px;margin-bottom:7px}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.row>*{flex:1;min-width:0}
+.review{padding:15px;border-radius:17px;margin:11px 0}
+.stars{color:#f3ca72;letter-spacing:2px}
+.review-form{margin-top:15px}
+#detail{
+  position:fixed;inset:0;z-index:70;overflow:auto;
+  padding:18px;background:rgba(5,6,9,.86);
+  -webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px)
+}
+.detail-inner{width:min(960px,100%);margin:22px auto;padding:20px;border-radius:28px}
+.detail-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:25px}
+.detail-img{width:100%;max-height:550px;object-fit:contain;border-radius:20px;background:#ffffff08}
+.detail-price{font-size:30px;font-weight:800}
+.old-price{color:var(--muted);text-decoration:line-through}
+footer{text-align:center;padding:35px 12px;color:var(--muted)}
 #intro{
- position:fixed;inset:0;z-index:1000;display:grid;place-items:center;
- background:radial-gradient(ellipse at center,#343840,#08090b 70%);
- transition:opacity .8s,visibility .8s;
+  position:fixed;inset:0;z-index:1000;display:grid;place-items:center;
+  background:radial-gradient(ellipse at center,#30343d 0%,#121419 46%,#07080a 100%);
+  transition:opacity .8s,visibility .8s
 }
 #intro.hide{opacity:0;visibility:hidden;pointer-events:none}
-.intro-content{text-align:center;animation:appear 1s both}
-.intro-logo{width:min(190px,50vw);height:190px;object-fit:contain}
-.intro-title{letter-spacing:8px;font-size:clamp(25px,6vw,42px)}
-.intro-sub{letter-spacing:4px;color:#aeb2bb}
+.intro-content{text-align:center;animation:appear 1.1s both}
+.intro-logo{width:min(210px,55vw);height:190px;object-fit:contain;
+  filter:drop-shadow(0 0 30px #d9e1ed35)}
+.intro-title{font-size:clamp(27px,6vw,43px);letter-spacing:8px;font-weight:800}
+.intro-sub{letter-spacing:3px;font-size:11px;color:#c1c5ce;margin-top:12px}
 .rain{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.rain img{position:absolute;top:-70px;width:27px;height:27px;object-fit:contain;opacity:.13;
- animation:fall linear infinite}
-@keyframes fall{to{transform:translateY(115vh) rotate(200deg)}}
-@keyframes appear{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
- background:#25272d;border:1px solid var(--line);padding:12px 18px;
- border-radius:15px;z-index:120;max-width:90vw}
-@media(max-width:650px){
- header{top:5px;padding:10px}nav{gap:5px}nav button{padding:9px;font-size:12px}
- .brand{letter-spacing:1px}.brand img{width:31px;height:31px}
- .hero{min-height:250px;padding:25px 15px}
- .catalog{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
- .product-bottom{padding:10px}.product-bottom button{font-size:12px;padding:10px 5px}
- .detail-grid{grid-template-columns:1fr}
- .stats{grid-template-columns:1fr 1fr}
+.rain img{position:absolute;top:-60px;width:25px;height:25px;object-fit:contain;
+  opacity:.14;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(115vh) rotate(160deg)}}
+@keyframes appear{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:none}}
+.toast{
+  position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+  z-index:1200;max-width:92vw;padding:13px 17px;border-radius:15px;
+  background:#252830;border:1px solid var(--border);box-shadow:var(--shadow)
 }
+.empty{text-align:center;padding:30px 15px}
+#adminProducts .review button{margin-top:7px}
+@media(max-width:650px){
+  header{top:4px;padding:9px 10px}
+  .brand{letter-spacing:1px;font-size:13px}.brand img{width:32px;height:32px}
+  nav{gap:4px}nav button{padding:8px;font-size:11px;min-height:36px}
+  .hero{min-height:250px;padding:24px 15px}
+  .catalog{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .product-bottom{padding:9px}.product-bottom button{padding:9px 4px;font-size:12px}
+  .detail-grid{grid-template-columns:1fr}.detail-inner{padding:13px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat:last-child{grid-column:1/-1}
+  .glass{-webkit-backdrop-filter:blur(12px) saturate(135%);
+    backdrop-filter:blur(12px) saturate(135%)}
+}
+@media(hover:none){.product:hover{transform:none}}
 @media(prefers-reduced-motion:reduce){
- *,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
 </style>
 </head>
 <body>
 
 <div id="intro">
- <div class="rain" id="rain"></div>
- <div class="intro-content">
-  <img class="intro-logo" src="./qaverion-logo.png" alt="QAVÉRION"
-       onerror="this.style.display='none'">
-  <div class="intro-title">QAVÉRION</div>
-  <div class="intro-sub">TECNOLOGÍA · ESTILO · INNOVACIÓN</div>
- </div>
+  <div class="rain" id="rain"></div>
+  <div class="intro-content">
+    <img class="intro-logo" src="./qaverion-logo.png" alt="QAVÉRION"
+      onerror="this.style.display='none'">
+    <div class="intro-title">QAVÉRION</div>
+    <div class="intro-sub">TECNOLOGÍA · ESTILO · INNOVACIÓN</div>
+  </div>
 </div>
 
 <header class="glass">
- <div class="brand">
-  <img src="./qaverion-logo.png" alt="" onerror="this.style.display='none'">
-  <span>QAVÉRION</span>
- </div>
- <nav>
-  <button id="themeBtn">◐ Tema</button>
-  <button id="loginBtn">Iniciar sesión</button>
-  <button id="logoutBtn" class="hidden">Salir</button>
- </nav>
+  <a class="brand" href="#" aria-label="Inicio QAVÉRION">
+    <img src="./qaverion-logo.png" alt="" onerror="this.style.display='none'">
+    <span>QAVÉRION</span>
+  </a>
+  <nav>
+    <button id="themeBtn" type="button">◐ Tema</button>
+    <button id="loginBtn" type="button">Google ↗</button>
+    <button id="logoutBtn" type="button" class="hidden">Salir</button>
+  </nav>
 </header>
 
 <main>
- <section class="hero glass">
-  <img src="./qaverion-logo.png" alt="QAVÉRION" onerror="this.style.display='none'">
-  <h1>Diseño que se siente.</h1>
-  <p class="muted">Descubre la próxima generación de tecnología y estilo.</p>
- </section>
+  <section class="hero glass">
+    <img src="./qaverion-logo.png" alt="Emblema QAVÉRION" onerror="this.style.display='none'">
+    <h1>Diseño que se siente.</h1>
+    <p class="muted">Descubre tecnología y estilo con una experiencia diferente.</p>
+    <a href="#catalogSection" class="btn">Explorar catálogo ↓</a>
+  </section>
 
- <section class="stats">
-  <div class="stat glass"><span class="muted">Visitas acumuladas</span><strong id="visits">—</strong></div>
-  <div class="stat glass"><span class="muted">En línea ahora</span><strong id="online">—</strong></div>
-  <div class="stat glass"><span class="muted">Productos</span><strong id="productCount">0</strong></div>
- </section>
+  <section class="stats">
+    <div class="stat glass"><span class="muted">Visitas acumuladas</span><strong id="visits">—</strong></div>
+    <div class="stat glass"><span class="muted">En línea ahora</span><strong id="online">—</strong></div>
+    <div class="stat glass"><span class="muted">Productos publicados</span><strong id="productCount">0</strong></div>
+  </section>
 
- <section>
-  <div class="toolbar">
-   <input id="search" class="search" placeholder="Buscar productos...">
-   <select id="category" style="max-width:220px">
-    <option value="Todos">Todas las categorías</option>
-    <option>Ropa</option><option>Audio</option><option>Cargadores</option>
-    <option>Accesorios</option><option>Móviles</option>
-   </select>
-  </div>
-  <div id="catalog" class="catalog"></div>
-  <p id="empty" class="muted hidden">Todavía no hay productos publicados en esta categoría.</p>
- </section>
-
- <section id="admin" class="panel glass hidden">
-  <h2>Panel de administración</h2>
-  <p class="muted">Los cambios se guardan en Firebase.</p>
-  <form id="productForm">
-   <input id="pid" type="hidden">
-   <div class="field"><label>Nombre del producto</label><input id="pname" required maxlength="120"></div>
-   <div class="row">
-    <div class="field"><label>Precio</label><input id="pprice" type="number" min="0" step=".01" required></div>
-    <div class="field"><label>Precio anterior (opcional)</label><input id="poldprice" type="number" min="0" step=".01"></div>
-   </div>
-   <div class="row">
-    <div class="field"><label>Categoría</label>
-     <input id="pcat" list="categories" required placeholder="Audio, Ropa...">
-     <datalist id="categories"><option>Ropa</option><option>Audio</option><option>Cargadores</option><option>Accesorios</option><option>Móviles</option></datalist>
+  <section id="catalogSection">
+    <h2>Descubre QAVÉRION</h2>
+    <p class="muted">Elige un producto para ver toda su información.</p>
+    <div class="toolbar">
+      <input id="search" class="search" type="search" placeholder="Buscar productos...">
+      <select id="category" aria-label="Filtrar categoría" style="max-width:240px">
+        <option value="Todos">Todas las categorías</option>
+        <option value="Ropa">Ropa</option>
+        <option value="Audio">Audio</option>
+        <option value="Cargadores">Cargadores</option>
+        <option value="Accesorios">Accesorios</option>
+        <option value="Móviles">Móviles</option>
+      </select>
     </div>
-    <div class="field"><label>Stock</label><input id="pstock" type="number" min="0" step="1" value="1" required></div>
-   </div>
-   <div class="field"><label>Descripción completa</label><textarea id="pdesc" rows="4"></textarea></div>
-   <div class="field"><label>Características (una por línea)</label><textarea id="pfeatures" rows="3" placeholder="Conexión Bluetooth&#10;Garantía&#10;Color negro"></textarea></div>
-   <div class="field"><label>Etiquetas personalizadas (separadas por coma)</label><input id="ptags" placeholder="Nuevo, Premium, Oferta"></div>
-   <div class="field"><label>Imagen del producto</label><input id="pimage" type="file" accept="image/*"></div>
-   <label><input id="ppublished" type="checkbox" checked style="width:auto"> Publicar producto</label>
-   <div class="row" style="margin-top:15px">
-    <button type="submit">Guardar producto</button>
-    <button type="button" id="cancelEdit">Limpiar</button>
-   </div>
-  </form>
-  <h3>Gestionar productos</h3><div id="adminProducts"></div>
-  <h3>Moderar reseñas</h3><div id="adminReviews"></div>
- </section>
+    <div id="catalog" class="catalog"></div>
+    <div id="empty" class="empty muted hidden">No hay productos publicados en esta categoría.</div>
+  </section>
 
- <section class="panel glass">
-  <h2>Reseñas de la comunidad</h2>
-  <p class="muted">Comparte tu experiencia con la tienda.</p>
-  <form id="reviewForm">
-   <div class="field"><label>Tu nombre o apodo</label><input id="rname" required maxlength="45"></div>
-   <div class="field"><label>Calificación</label>
-    <select id="rstars"><option value="5">★★★★★ — Excelente</option><option value="4">★★★★☆ — Muy buena</option><option value="3">★★★☆☆ — Buena</option><option value="2">★★☆☆☆ — Regular</option><option value="1">★☆☆☆☆ — Mala</option></select>
-   </div>
-   <div class="field"><label>Tu reseña</label><textarea id="rtext" rows="3" maxlength="800" required placeholder="Cuéntanos tu experiencia..."></textarea></div>
-   <button type="submit">Publicar reseña</button>
-  </form>
-  <div id="reviews"></div>
- </section>
+  <section id="admin" class="panel glass hidden">
+    <h2>Panel de administración</h2>
+    <p class="muted">Agrega productos, modifica precios y gestiona tus etiquetas.</p>
 
- <section class="panel glass">
-  <h2>¿Tienes alguna pregunta?</h2>
-  <p class="muted">Contáctanos para consultar disponibilidad o información de productos.</p>
-  <div class="row">
-   <a class="btn" href="https://wa.me/529621456775" target="_blank" rel="noopener">WhatsApp</a>
-   <a class="btn" href="https://www.instagram.com/qaverion/" target="_blank" rel="noopener">Instagram</a>
-  </div>
- </section>
+    <form id="productForm">
+      <input id="pid" type="hidden">
+      <div class="field"><label for="pname">Nombre del producto</label><input id="pname" required maxlength="120"></div>
+      <div class="row">
+        <div class="field"><label for="pprice">Precio (MXN)</label><input id="pprice" type="number" min="0" step=".01" required></div>
+        <div class="field"><label for="poldprice">Precio anterior (opcional)</label><input id="poldprice" type="number" min="0" step=".01"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="pcat">Categoría</label><input id="pcat" list="categories" required placeholder="Escribe una categoría"><datalist id="categories"><option>Ropa</option><option>Audio</option><option>Cargadores</option><option>Accesorios</option><option>Móviles</option></datalist></div>
+        <div class="field"><label for="pstock">Unidades disponibles</label><input id="pstock" type="number" min="0" step="1" value="1" required></div>
+      </div>
+      <div class="field"><label for="pdesc">Descripción</label><textarea id="pdesc" rows="4" maxlength="5000" placeholder="Describe tu producto..."></textarea></div>
+      <div class="field"><label for="pfeatures">Características (una por línea)</label><textarea id="pfeatures" rows="3" placeholder="Color negro&#10;Conexión Bluetooth&#10;Garantía"></textarea></div>
+      <div class="field"><label for="ptags">Etiquetas personalizadas (separadas por comas)</label><input id="ptags" placeholder="Nuevo, Premium, Oferta"></div>
+      <div class="field"><label for="pimage">Imagen del producto</label><input id="pimage" type="file" accept="image/*"><p class="small muted">Se comprime antes de guardarse. Usa imágenes moderadas de tamaño.</p></div>
+      <label><input id="ppublished" type="checkbox" checked style="width:auto"> Publicar producto</label>
+      <div class="row" style="margin-top:15px">
+        <button class="primary" type="submit">Guardar producto</button>
+        <button type="button" id="cancelEdit">Limpiar formulario</button>
+      </div>
+    </form>
+
+    <h3>Productos existentes</h3>
+    <div id="adminProducts"></div>
+    <h3>Moderar reseñas</h3>
+    <div id="adminReviews"></div>
+  </section>
+
+  <section class="panel glass" id="community">
+    <h2>Reseñas de la comunidad</h2>
+    <p class="muted">Tu opinión ayuda a mejorar QAVÉRION.</p>
+    <form id="reviewForm" class="review-form">
+      <div class="field"><label for="rname">Nombre o apodo</label><input id="rname" maxlength="45" required placeholder="¿Cómo te llamamos?"></div>
+      <div class="field"><label for="rstars">Calificación</label>
+        <select id="rstars">
+          <option value="5">★★★★★ — Excelente</option>
+          <option value="4">★★★★☆ — Muy buena</option>
+          <option value="3">★★★☆☆ — Buena</option>
+          <option value="2">★★☆☆☆ — Regular</option>
+          <option value="1">★☆☆☆☆ — Mala</option>
+        </select>
+      </div>
+      <div class="field"><label for="rtext">Tu reseña</label><textarea id="rtext" maxlength="800" rows="4" required placeholder="Cuéntanos tu experiencia..."></textarea><div class="small muted" id="reviewChars">0/800</div></div>
+      <button class="primary" type="submit">Publicar reseña</button>
+    </form>
+    <div id="reviewSummary" class="muted" style="margin-top:20px"></div>
+    <div id="reviews"></div>
+  </section>
+
+  <section class="panel glass">
+    <h2>¿Necesitas más información?</h2>
+    <p class="muted">Pregunta por disponibilidad, características y precios.</p>
+    <div class="row">
+      <a class="btn" href="https://wa.me/529621456775" target="_blank" rel="noopener">WhatsApp ↗</a>
+      <a class="btn" href="https://www.instagram.com/qaverion/" target="_blank" rel="noopener">Instagram ↗</a>
+    </div>
+  </section>
 </main>
+
 <footer>© <span id="year"></span> QAVÉRION · Tecnología y estilo</footer>
 
 <div id="detail" class="hidden" role="dialog" aria-modal="true" aria-label="Detalles del producto">
- <div class="detail-inner glass">
-  <button id="closeDetail">← Volver al catálogo</button>
-  <div id="detailContent" style="margin-top:20px"></div>
- </div>
+  <div class="detail-inner glass">
+    <button id="closeDetail" type="button">← Volver al catálogo</button>
+    <div id="detailContent" style="margin-top:20px"></div>
+  </div>
 </div>
-<div id="toast" class="toast hidden"></div>
+<div id="toast" class="toast hidden" role="status"></div>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
  getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,
  getRedirectResult,onAuthStateChanged,signOut
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import {
- getFirestore,collection,doc,getDoc,setDoc,addDoc,updateDoc,deleteDoc,
- onSnapshot,query,where,orderBy,limit,runTransaction,serverTimestamp,
- increment
+ getFirestore,collection,doc,addDoc,updateDoc,deleteDoc,
+ onSnapshot,query,orderBy,limit,runTransaction,serverTimestamp,
+ increment,setDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig={
@@ -290,168 +363,200 @@ const app=initializeApp(firebaseConfig);
 const auth=getAuth(app),db=getFirestore(app);
 const $=id=>document.getElementById(id);
 const money=n=>new Intl.NumberFormat("es-MX",{style:"currency",currency:"MXN"}).format(Number(n)||0);
-const safe=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-let products=[],reviews=[],user=null,isAdmin=false,currentDetail=null;
-let imageData="",presenceTimer=null,stopPresence=null,stopReviews=null,stopProducts=null;
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let products=[],reviews=[],user=null,isAdmin=false,imageData="";
+let presenceTimer=null,stopPresence=null,stopProducts=null,stopReviews=null;
+let toastTimer=null;
 
-function toast(msg){
- $("toast").textContent=msg;$("toast").classList.remove("hidden");
- setTimeout(()=>$("toast").classList.add("hidden"),3000);
+function toast(message){
+ $("toast").textContent=message;
+ $("toast").classList.remove("hidden");
+ clearTimeout(toastTimer);
+ toastTimer=setTimeout(()=>$("toast").classList.add("hidden"),4000);
 }
-function logoRain(){
- const rain=$("rain"),logo="./qaverion-logo.png";
- for(let i=0;i<100;i++){
-  const img=document.createElement("img");img.src=logo;img.alt="";
-  img.style.left=Math.random()*100+"%";
-  img.style.animationDuration=(7+Math.random()*12)+"s";
-  img.style.animationDelay=(-Math.random()*15)+"s";
-  rain.appendChild(img);
- }
-}
-logoRain();
-setTimeout(()=>$("intro").classList.add("hide"),2600);
 $("year").textContent=new Date().getFullYear();
+$("rtext").addEventListener("input",()=>{$("reviewChars").textContent=$("rtext").value.length+"/800"});
 
+/* Bienvenida y partículas ligeras */
+const rain=$("rain");
+for(let i=0;i<42;i++){
+ const img=document.createElement("img");
+ img.src="./qaverion-logo.png";img.alt="";
+ img.style.left=(i*37%100)+"%";
+ img.style.animationDuration=(9+(i%11))+"s";
+ img.style.animationDelay=(-(i%17))+"s";
+ rain.appendChild(img);
+}
+setTimeout(()=>$("intro").classList.add("hide"),2500);
+
+/* Tema claro / oscuro */
 $("themeBtn").onclick=()=>{
  const light=document.body.dataset.theme!=="light";
  document.body.dataset.theme=light?"light":"dark";
  if(light){
+  document.documentElement.style.colorScheme="light";
   document.documentElement.style.setProperty("--bg","#e9ebef");
-  document.documentElement.style.setProperty("--fg","#181a1e");
-  document.documentElement.style.setProperty("--muted","#555a64");
+  document.documentElement.style.setProperty("--fg","#17191e");
+  document.documentElement.style.setProperty("--muted","#575d67");
   document.documentElement.style.setProperty("--glass","rgba(255,255,255,.48)");
-  document.documentElement.style.setProperty("--glass2","rgba(255,255,255,.7)");
-  document.documentElement.style.setProperty("--line","rgba(30,35,45,.15)");
+  document.documentElement.style.setProperty("--glass2","rgba(255,255,255,.72)");
+  document.documentElement.style.setProperty("--border","rgba(35,40,50,.17)");
   document.body.style.background="#e9ebef";
  }else{
-  ["--bg","--fg","--muted","--glass","--glass2","--line"].forEach((v,i)=>{
-   const vals=["#101114","#f7f7f8","#a5a7af","rgba(255,255,255,.075)","rgba(255,255,255,.12)","rgba(255,255,255,.17)"];
-   document.documentElement.style.setProperty(v,vals[i]);
-  });document.body.style.background="";
+  document.documentElement.style.colorScheme="dark";
+  const vals={"--bg":"#090a0d","--fg":"#f7f8fb","--muted":"#a7abb5",
+    "--glass":"rgba(255,255,255,.075)","--glass2":"rgba(255,255,255,.13)",
+    "--border":"rgba(255,255,255,.19)"};
+  Object.entries(vals).forEach(([k,v])=>document.documentElement.style.setProperty(k,v));
+  document.body.style.background="";
  }
 };
+
+/* Inicio de sesión */
 $("loginBtn").onclick=async()=>{
  try{await signInWithPopup(auth,new GoogleAuthProvider())}
  catch(e){
-  if(["auth/popup-blocked","auth/popup-closed-by-user"].includes(e.code)){
-   try{await signInWithRedirect(auth,new GoogleAuthProvider())}catch(err){toast(err.message)}
-  }else toast("No se pudo iniciar sesión: "+e.message);
+  if(e.code==="auth/popup-blocked"){
+   try{await signInWithRedirect(auth,new GoogleAuthProvider())}
+   catch(err){toast("No se pudo iniciar sesión: "+err.message)}
+  }else toast("Error de acceso: "+e.message);
  }
 };
-getRedirectResult(auth).catch(()=>{});
+getRedirectResult(auth).catch(e=>console.warn("Inicio de sesión:",e.code));
 $("logoutBtn").onclick=()=>signOut(auth);
+
 onAuthStateChanged(auth,u=>{
- user=u;isAdmin=!!u&&u.email===ADMIN_EMAIL;
+ user=u;isAdmin=!!u&&u.email===ADMIN_EMAIL&&u.emailVerified;
  $("loginBtn").classList.toggle("hidden",!!u);
  $("logoutBtn").classList.toggle("hidden",!u);
  $("admin").classList.toggle("hidden",!isAdmin);
  if(isAdmin)renderAdmin();
 });
 
+/* Catálogo: las tarjetas solo muestran imagen y botón */
 function renderProducts(){
- const term=$("search").value.trim().toLowerCase(),cat=$("category").value;
- const list=products.filter(p=>p.published!==false&&
-  (cat==="Todos"||p.category===cat)&&
-  (String(p.name||"").toLowerCase().includes(term)||
-   String(p.description||"").toLowerCase().includes(term)||
-   (Array.isArray(p.tags)?p.tags.join(" "):"").toLowerCase().includes(term)));
+ const term=$("search").value.trim().toLowerCase();
+ const category=$("category").value;
+ const list=products.filter(p=>
+  p.published!==false&&
+  (category==="Todos"||p.category===category)&&
+  ((p.name||"").toLowerCase().includes(term)||
+   (p.description||"").toLowerCase().includes(term)||
+   (p.tags||[]).join(" ").toLowerCase().includes(term))
+ );
  $("productCount").textContent=products.filter(p=>p.published!==false).length;
  $("empty").classList.toggle("hidden",list.length>0);
  $("catalog").innerHTML=list.map(p=>`
-  <article class="product glass" data-open="${safe(p.id)}" tabindex="0">
-   ${p.imageUrl?`<img class="product-photo" src="${p.imageUrl}" alt="${safe(p.name)}" loading="lazy">`:`<div class="product-placeholder">◇</div>`}
+  <article class="product glass" data-open="${esc(p.id)}">
+   ${p.imageUrl?`<img class="product-photo" src="${esc(p.imageUrl)}" alt="${esc(p.name)}" loading="lazy">`:`<div class="product-placeholder">◇</div>`}
    <div class="product-bottom">
-    <div class="tags">${(p.tags||[]).slice(0,2).map(t=>`<span class="tag">${safe(t)}</span>`).join("")}</div>
-    <button data-open="${safe(p.id)}">Ver detalles ↗</button>
+    <button type="button" data-open="${esc(p.id)}">Ver más información ↗</button>
    </div>
   </article>`).join("");
  $("catalog").querySelectorAll("[data-open]").forEach(el=>{
-  const open=()=>showDetail(el.dataset.open);
-  el.addEventListener("click",open);
-  el.addEventListener("keydown",e=>{if(e.key==="Enter")open()});
+  el.addEventListener("click",()=>showDetail(el.dataset.open));
  });
 }
 $("search").addEventListener("input",renderProducts);
 $("category").addEventListener("change",renderProducts);
 
+/* Detalles completos */
 function showDetail(id){
  const p=products.find(x=>x.id===id);if(!p)return;
- currentDetail=p;$("detail").classList.remove("hidden");
+ $("detail").classList.remove("hidden");
+ document.body.style.overflow="hidden";
  $("detailContent").innerHTML=`
   <div class="detail-grid">
-   <div>${p.imageUrl?`<img class="detail-img" src="${p.imageUrl}" alt="${safe(p.name)}">`:`<div class="product-placeholder">◇</div>`}</div>
-   <div>
-    <div class="tags">${(p.tags||[]).map(t=>`<span class="tag">${safe(t)}</span>`).join("")}</div>
-    <p class="muted">${safe(p.category||"Producto")}</p>
-    <h1 style="font-size:clamp(27px,5vw,43px);letter-spacing:-1px">${safe(p.name)}</h1>
-    <div class="price">${money(p.price)}</div>
-    ${p.oldPrice?`<p class="muted"><s>${money(p.oldPrice)}</s></p>`:""}
-    <p>${safe(p.description||"Consulta con nosotros para obtener más información.")}</p>
-    <p class="muted">${Number(p.stock)>0?`Disponibles: ${Number(p.stock)}`:"Agotado"}</p>
-    <h3>Características</h3>
-    <ul>${(p.features||[]).map(x=>`<li>${safe(x)}</li>`).join("")||"<li>Consulta las especificaciones con nuestro equipo.</li>"}</ul>
-    <a class="btn" style="display:inline-block;margin-top:10px" target="_blank" rel="noopener"
-     href="https://wa.me/529621456775?text=${encodeURIComponent("Hola, me interesa "+p.name+" ("+money(p.price)+"). ¿Me das más información?")}">Consultar por WhatsApp</a>
+   <div>${p.imageUrl?`<img class="detail-img" src="${esc(p.imageUrl)}" alt="${esc(p.name)}">`:`<div class="product-placeholder">◇</div>`}
+    <div class="tags">${(p.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>
    </div>
-  </div>
-  <section><h2>Reseñas de este producto</h2><p class="muted">Las reseñas de la comunidad aparecen abajo en la página.</p></section>`;
+   <div>
+    <p class="muted">${esc(p.category||"Producto")}</p>
+    <h1 style="font-size:clamp(30px,5vw,46px);letter-spacing:-1px">${esc(p.name)}</h1>
+    <div class="detail-price">${money(p.price)}</div>
+    ${p.oldPrice?`<div class="old-price">${money(p.oldPrice)}</div>`:""}
+    <p>${esc(p.description||"Consulta con nosotros para obtener más información.")}</p>
+    <p class="muted">${Number(p.stock)>0?"Disponibles: "+Number(p.stock):"Agotado"}</p>
+    <h3>Características</h3>
+    <ul>${(p.features||[]).map(f=>`<li>${esc(f)}</li>`).join("")||"<li>Consulta las especificaciones con nosotros.</li>"}</ul>
+    <a class="btn primary" style="margin-top:12px" target="_blank" rel="noopener"
+      href="https://wa.me/529621456775?text=${encodeURIComponent("Hola, me interesa "+p.name+" ("+money(p.price)+"). ¿Me das más información?")}">Consultar por WhatsApp ↗</a>
+   </div>
+  </div>`;
 }
-$("closeDetail").onclick=()=>$("detail").classList.add("hidden");
-$("detail").addEventListener("click",e=>{if(e.target===$("detail"))$("detail").classList.add("hidden")});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")$("detail").classList.add("hidden")});
+function closeDetail(){
+ $("detail").classList.add("hidden");
+ document.body.style.overflow="";
+}
+$("closeDetail").onclick=closeDetail;
+$("detail").addEventListener("click",e=>{if(e.target===$("detail"))closeDetail()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDetail()});
 
+/* Compresión de imágenes para evitar documentos demasiado grandes */
 async function compressImage(file){
  if(!file)return "";
  if(!file.type.startsWith("image/"))throw Error("Selecciona una imagen válida.");
+ if(file.size>12*1024*1024)throw Error("La imagen original supera 12 MB.");
  const bitmap=await createImageBitmap(file);
- const max=1000,scale=Math.min(1,max/Math.max(bitmap.width,bitmap.height));
+ const max=900,scale=Math.min(1,max/Math.max(bitmap.width,bitmap.height));
  const canvas=document.createElement("canvas");
- canvas.width=Math.round(bitmap.width*scale);canvas.height=Math.round(bitmap.height*scale);
+ canvas.width=Math.max(1,Math.round(bitmap.width*scale));
+ canvas.height=Math.max(1,Math.round(bitmap.height*scale));
  canvas.getContext("2d").drawImage(bitmap,0,0,canvas.width,canvas.height);
- let data=canvas.toDataURL("image/jpeg",.78);
- if(data.length>850000)data=canvas.toDataURL("image/jpeg",.58);
- if(data.length>850000)throw Error("La imagen sigue siendo demasiado grande. Usa una imagen más pequeña.");
+ let data=canvas.toDataURL("image/jpeg",.72);
+ if(data.length>780000)data=canvas.toDataURL("image/jpeg",.5);
+ if(data.length>780000)throw Error("Imagen muy pesada; elige una imagen más pequeña.");
  return data;
 }
-$("pimage").onchange=async e=>{
+$("pimage").addEventListener("change",async e=>{
  try{imageData=await compressImage(e.target.files[0])}
  catch(err){imageData="";toast(err.message)}
-};
-$("productForm").onsubmit=async e=>{
- e.preventDefault();if(!isAdmin)return toast("No tienes permisos de administrador.");
+});
+
+/* Guardar y editar productos */
+$("productForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ if(!isAdmin)return toast("Inicia sesión con la cuenta administradora.");
  try{
   const id=$("pid").value;
   const old=id?products.find(p=>p.id===id):null;
   const data={
-   name:$("pname").value.trim(),price:Number($("pprice").value),
+   name:$("pname").value.trim(),
+   price:Number($("pprice").value),
    oldPrice:Number($("poldprice").value)||null,
-   category:$("pcat").value.trim(),stock:Math.max(0,Number($("pstock").value)),
+   category:$("pcat").value.trim(),
+   stock:Math.max(0,Number($("pstock").value)),
    description:$("pdesc").value.trim(),
    features:$("pfeatures").value.split("\n").map(x=>x.trim()).filter(Boolean),
    tags:$("ptags").value.split(",").map(x=>x.trim()).filter(Boolean).slice(0,20),
    imageUrl:imageData||old?.imageUrl||"",
-   published:$("ppublished").checked,updatedAt:serverTimestamp()
+   published:$("ppublished").checked,
+   updatedAt:serverTimestamp()
   };
-  if(!data.name||!data.category)throw Error("Completa el nombre y la categoría.");
+  if(!data.name||!data.category)throw Error("Completa nombre y categoría.");
   if(id)await updateDoc(doc(db,"products",id),data);
   else await addDoc(collection(db,"products"),{...data,createdAt:serverTimestamp()});
   $("productForm").reset();$("pid").value="";imageData="";
   toast("Producto guardado correctamente.");
- }catch(err){toast("No se pudo guardar: "+err.message)}
+ }catch(err){toast("Error al guardar: "+err.message)}
+});
+$("cancelEdit").onclick=()=>{
+ $("productForm").reset();$("pid").value="";imageData="";
 };
-$("cancelEdit").onclick=()=>{ $("productForm").reset();$("pid").value="";imageData="" };
 
+/* Panel de administración */
 function renderAdmin(){
  if(!isAdmin)return;
  $("adminProducts").innerHTML=products.map(p=>`
   <div class="review glass">
-   <b>${safe(p.name)}</b> · ${money(p.price)} · Stock: ${Number(p.stock)||0}
-   <div class="row" style="margin-top:8px">
-    <button data-edit="${safe(p.id)}">Editar</button>
-    <button data-toggle="${safe(p.id)}">${p.published===false?"Publicar":"Ocultar"}</button>
-    <button data-delete="${safe(p.id)}">Eliminar</button>
+   <b>${esc(p.name)}</b><p class="muted">${money(p.price)} · Stock: ${Number(p.stock)||0}</p>
+   <div class="row">
+    <button type="button" data-edit="${esc(p.id)}">Editar</button>
+    <button type="button" data-toggle="${esc(p.id)}">${p.published===false?"Publicar":"Ocultar"}</button>
+    <button type="button" class="danger" data-delete="${esc(p.id)}">Eliminar</button>
    </div>
-  </div>`).join("")||"<p class='muted'>No hay productos todavía.</p>";
+  </div>`).join("")||"<p class='muted'>No hay productos registrados.</p>";
+
  $("adminProducts").querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>{
   const p=products.find(x=>x.id===b.dataset.edit);if(!p)return;
   $("pid").value=p.id;$("pname").value=p.name||"";
@@ -459,64 +564,94 @@ function renderAdmin(){
   $("pcat").value=p.category||"";$("pstock").value=p.stock??0;
   $("pdesc").value=p.description||"";$("pfeatures").value=(p.features||[]).join("\n");
   $("ptags").value=(p.tags||[]).join(", ");$("ppublished").checked=p.published!==false;
-  imageData="";$("pimage").value="";window.scrollTo({top:$("admin").offsetTop,behavior:"smooth"});
+  $("pimage").value="";imageData="";
+  $("admin").scrollIntoView({behavior:"smooth"});
  });
  $("adminProducts").querySelectorAll("[data-toggle]").forEach(b=>b.onclick=async()=>{
+  if(!isAdmin)return;
   const p=products.find(x=>x.id===b.dataset.toggle);if(!p)return;
   try{await updateDoc(doc(db,"products",p.id),{published:p.published===false,updatedAt:serverTimestamp()})}
-  catch(e){toast(e.message)}
+  catch(e){toast("No se pudo cambiar la publicación: "+e.message)}
  });
  $("adminProducts").querySelectorAll("[data-delete]").forEach(b=>b.onclick=async()=>{
-  if(!confirm("¿Eliminar este producto permanentemente?"))return;
+  if(!isAdmin||!confirm("¿Eliminar permanentemente este producto?"))return;
   try{await deleteDoc(doc(db,"products",b.dataset.delete));toast("Producto eliminado.")}
-  catch(e){toast(e.message)}
+  catch(e){toast("No se pudo eliminar: "+e.message)}
  });
+
  $("adminReviews").innerHTML=reviews.map(r=>`
-  <div class="review glass"><b>${safe(r.name)}</b> · <span class="stars">${"★".repeat(r.stars||5)}</span>
-   <p>${safe(r.text)}</p><button data-hide-review="${safe(r.id)}">${r.visible===false?"Mostrar":"Ocultar"}</button>
+  <div class="review glass">
+   <b>${esc(r.name)}</b> · <span class="stars">${"★".repeat(Number(r.stars)||5)}</span>
+   <p>${esc(r.text)}</p>
+   <button type="button" data-review-toggle="${esc(r.id)}">${r.visible===false?"Mostrar reseña":"Ocultar reseña"}</button>
+   <button type="button" class="danger" data-review-delete="${esc(r.id)}">Eliminar</button>
   </div>`).join("")||"<p class='muted'>Aún no hay reseñas.</p>";
- $("adminReviews").querySelectorAll("[data-hide-review]").forEach(b=>b.onclick=async()=>{
-  const r=reviews.find(x=>x.id===b.dataset.hideReview);if(!r)return;
+
+ $("adminReviews").querySelectorAll("[data-review-toggle]").forEach(b=>b.onclick=async()=>{
+  const r=reviews.find(x=>x.id===b.dataset.reviewToggle);if(!r||!isAdmin)return;
   try{await updateDoc(doc(db,"reviews",r.id),{visible:r.visible===false});toast("Moderación actualizada.")}
   catch(e){toast("No se pudo moderar: "+e.message)}
  });
+ $("adminReviews").querySelectorAll("[data-review-delete]").forEach(b=>b.onclick=async()=>{
+  if(!isAdmin||!confirm("¿Eliminar esta reseña?"))return;
+  try{await deleteDoc(doc(db,"reviews",b.dataset.reviewDelete));toast("Reseña eliminada.")}
+  catch(e){toast("No se pudo eliminar: "+e.message)}
+ });
 }
 
-$("reviewForm").onsubmit=async e=>{
+/* Reseñas: escritura y representación */
+$("reviewForm").addEventListener("submit",async e=>{
  e.preventDefault();
- const name=$("rname").value.trim(),text=$("rtext").value.trim(),stars=Number($("rstars").value);
- if(!name||!text)return;
+ const name=$("rname").value.trim();
+ const text=$("rtext").value.trim();
+ const stars=Number($("rstars").value);
+ if(!name||!text)return toast("Completa tu nombre y reseña.");
+ if(name.length>45||text.length>800)return toast("Tu reseña supera el límite permitido.");
  try{
   await addDoc(collection(db,"reviews"),{
    name,text,stars,visible:true,createdAt:serverTimestamp()
   });
-  $("rtext").value="";toast("¡Gracias por compartir tu reseña!");
- }catch(err){toast("No se pudo publicar. Revisa las reglas de Firebase.")}
-};
+  $("rtext").value="";$("reviewChars").textContent="0/800";
+  toast("¡Tu reseña se publicó correctamente!");
+ }catch(err){
+  console.error("Error al publicar reseña:",err);
+  toast("No se pudo publicar. Revisa las reglas de Firestore.");
+ }
+});
 function renderReviews(){
  const visible=reviews.filter(r=>r.visible!==false);
+ const avg=visible.length?visible.reduce((sum,r)=>sum+(Number(r.stars)||5),0)/visible.length:0;
+ $("reviewSummary").textContent=visible.length
+  ?`${visible.length} reseña(s) · Promedio ${avg.toFixed(1)}/5 estrellas`
+  :"Todavía no hay reseñas. ¡Sé la primera persona en compartir su experiencia!";
  $("reviews").innerHTML=visible.map(r=>`
   <article class="review glass">
-   <div class="row" style="align-items:center">
-    <b>${safe(r.name)}</b><span class="stars">${"★".repeat(Math.max(1,Math.min(5,Number(r.stars)||5)))}${"☆".repeat(5-Math.max(1,Math.min(5,Number(r.stars)||5)))}</span>
+   <div class="row" style="justify-content:space-between">
+    <b>${esc(r.name)}</b>
+    <span class="stars" aria-label="${Number(r.stars)||5} de 5 estrellas">
+     ${"★".repeat(Math.max(1,Math.min(5,Number(r.stars)||5)))}${"☆".repeat(5-Math.max(1,Math.min(5,Number(r.stars)||5)))}
+    </span>
    </div>
-   <p>${safe(r.text)}</p>
+   <p>${esc(r.text)}</p>
    <small class="muted">${r.createdAt?.toDate?r.createdAt.toDate().toLocaleDateString("es-MX"):"Reseña de la comunidad"}</small>
-  </article>`).join("")||"<p class='muted'>Sé la primera persona en dejar una reseña.</p>";
+  </article>`).join("");
  renderAdmin();
 }
 
-onSnapshot(collection(db,"products"),snap=>{
+/* Productos y reseñas desde Firestore */
+stopProducts=onSnapshot(collection(db,"products"),snap=>{
  products=snap.docs.map(d=>({id:d.id,...d.data()}));
  renderProducts();renderAdmin();
-},err=>toast("Error al cargar productos: "+err.message));
-
-onSnapshot(query(collection(db,"reviews"),orderBy("createdAt","desc"),limit(100)),snap=>{
+},err=>{
+ console.error(err);toast("Error al cargar productos. Revisa las reglas de Firebase.");
+});
+stopReviews=onSnapshot(query(collection(db,"reviews"),orderBy("createdAt","desc"),limit(100)),snap=>{
  reviews=snap.docs.map(d=>({id:d.id,...d.data()}));renderReviews();
-},err=>toast("Las reseñas necesitan permisos de lectura en Firestore."));
+},err=>{
+ console.error(err);toast("Error al leer reseñas. Revisa las reglas de Firestore.");
+});
 
-/* Estadísticas compartidas en Firestore. El conteo de visitas registra
-   una visita por sesión del navegador; no es un contador de personas únicas. */
+/* Visitas acumuladas: una por sesión del navegador */
 async function countVisit(){
  if(sessionStorage.getItem("qv_counted"))return;
  try{
@@ -527,31 +662,35 @@ async function countVisit(){
    else tx.update(ref,{visits:increment(1)});
   });
   sessionStorage.setItem("qv_counted","1");
- }catch(e){console.warn("No se pudo actualizar visitas",e)}
+ }catch(e){console.warn("Contador de visitas:",e)}
 }
 onSnapshot(doc(db,"stats","global"),snap=>{
  $("visits").textContent=snap.exists()?Number(snap.data().visits||0).toLocaleString("es-MX"):"0";
 },()=>{$("visits").textContent="—"});
 countVisit();
 
-/* Presencia aproximada: conexiones activas en los últimos 2 minutos.
-   La limpieza automática de documentos antiguos requiere mantenimiento
-   adicional; los documentos viejos no cuentan como personas en línea. */
-const visitorId=(()=> {
+/* Presencia aproximada: actividad en los últimos 2 minutos */
+function getVisitorId(){
  let id=localStorage.getItem("qv_visitor_id");
- if(!id){id=crypto.randomUUID();localStorage.setItem("qv_visitor_id",id)}
+ if(!id){
+  id=crypto.randomUUID();
+  localStorage.setItem("qv_visitor_id",id);
+ }
  return id;
-})();
+}
+const visitorId=getVisitorId();
 async function heartbeat(){
  try{await setDoc(doc(db,"presence",visitorId),{lastSeen:Date.now()})}
- catch(e){console.warn("Presencia no disponible",e)}
+ catch(e){console.warn("Presencia:",e)}
 }
-heartbeat();presenceTimer=setInterval(heartbeat,45000);
+heartbeat();
+presenceTimer=setInterval(heartbeat,45000);
 onSnapshot(collection(db,"presence"),snap=>{
  const cutoff=Date.now()-120000;
- $("online").textContent=snap.docs.filter(d=>Number(d.data().lastSeen)>cutoff).length.toLocaleString("es-MX");
+ const active=snap.docs.filter(d=>Number(d.data().lastSeen)>cutoff).length;
+ $("online").textContent=active.toLocaleString("es-MX");
 },()=>{$("online").textContent="—"});
-window.addEventListener("beforeunload",()=>clearInterval(presenceTimer));
+window.addEventListener("pagehide",()=>clearInterval(presenceTimer));
 </script>
 </body>
 </html>
